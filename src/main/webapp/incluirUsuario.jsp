@@ -50,7 +50,7 @@
             <div class="container">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-primary">
+                        <div class="card-header card-header-info">
                             <h4 class="card-title">Novo Usuário</h4>
                             <p class="card-category">Adicione um novo usuário</p>
                         </div>
@@ -69,10 +69,17 @@
                                             <input type="text" class="form-control" id="cpf" name="cpf" required>
                                         </div>
                                     </div>
+
                                     <div class="col-md-5">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" required>
+                                            <label class="bmd-label-floating">Data de Nascimento</label>
+                                            <input type="date" class="form-control" id="dataNasc" name="dataNasc">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group bmd-form-group">
+                                            <label class="bmd-label-floating">Login</label>
+                                            <input type="text" class="form-control" id="login" name="login" required>
                                         </div>
                                     </div>
                                 </div>
@@ -115,8 +122,8 @@
                                 </div>
                                 <br>
                                 <br>
-                                <button type="submit" class="btn btn-primary pull-right" id="salvarUser" name="salvarUser">Salvar</button>
-                                <button type="" class="btn btn-primary pull-right">Cancelar</button>
+                                <button type="submit" class="btn btn-success pull-right" id="salvarUser" name="salvarUser">Salvar</button>
+                                <button type="" class="btn btn-danger pull-right">Cancelar</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

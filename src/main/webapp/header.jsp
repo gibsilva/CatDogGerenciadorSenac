@@ -38,37 +38,37 @@
             </div>
             <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="5209c95b-97dd-a4e7-730a-82657e683a22">
                 <ul class="nav">
-                    <li class="nav-item active  ">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="incluirUsuario.jsp">
                             <i class="fas fa-user"></i>
                             <p>Adicionar Usuario</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="listaUsuario.jsp">
                             <i class="fas fa-users"></i>
                             <p>Consultar Usuarios</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="incluirProduto.jsp">
                             <i class="fas fa-paw"></i>
                             <p>Adicionar Produto</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="listaProduto.jsp">
                             <i class="fas fa-paw"></i>
                             <p>consultar Produtos</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">
                             <i class="fas fa-file-alt"></i>
                             <p>Relatorios</p>
@@ -126,7 +126,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
         <!-- Library for adding dinamically elements -->
         <script src="assets/js/plugins/arrive.min.js" type="text/javascript"></script>
-        
+
         <!--  Google Maps Plugin    -->
         <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
         <!-- Chartist JS -->
@@ -151,7 +151,7 @@
 
                     fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
-                    if (window_width > 767 && fixed_plugin_open === 'Dashboard') {
+                    if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
                         if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
                             $('.fixed-plugin .dropdown').addClass('open');
                         }
@@ -177,15 +177,15 @@
 
                         var new_color = $(this).data('color');
 
-                        if ($sidebar.length !== 0) {
+                        if ($sidebar.length != 0) {
                             $sidebar.attr('data-color', new_color);
                         }
 
-                        if ($full_page.length !== 0) {
+                        if ($full_page.length != 0) {
                             $full_page.attr('filter-color', new_color);
                         }
 
-                        if ($sidebar_responsive.length !== 0) {
+                        if ($sidebar_responsive.length != 0) {
                             $sidebar_responsive.attr('data-color', new_color);
                         }
                     });
@@ -196,7 +196,7 @@
 
                         var new_color = $(this).data('background-color');
 
-                        if ($sidebar.length !== 0) {
+                        if ($sidebar.length != 0) {
                             $sidebar.attr('data-background-color', new_color);
                         }
                     });
@@ -210,14 +210,14 @@
 
                         var new_image = $(this).find("img").attr('src');
 
-                        if ($sidebar_img_container.length !== 0 && $('.switch-sidebar-image input:checked').length !== 0) {
+                        if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
                             $sidebar_img_container.fadeOut('fast', function () {
                                 $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
                                 $sidebar_img_container.fadeIn('fast');
                             });
                         }
 
-                        if ($full_page_background.length !== 0 && $('.switch-sidebar-image input:checked').length !== 0) {
+                        if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
                             var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
 
                             $full_page_background.fadeOut('fast', function () {
@@ -226,7 +226,7 @@
                             });
                         }
 
-                        if ($('.switch-sidebar-image input:checked').length === 0) {
+                        if ($('.switch-sidebar-image input:checked').length == 0) {
                             var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
                             var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
 
@@ -234,7 +234,7 @@
                             $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
                         }
 
-                        if ($sidebar_responsive.length !== 0) {
+                        if ($sidebar_responsive.length != 0) {
                             $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
                         }
                     });
@@ -245,24 +245,24 @@
                         $input = $(this);
 
                         if ($input.is(':checked')) {
-                            if ($sidebar_img_container.length !== 0) {
+                            if ($sidebar_img_container.length != 0) {
                                 $sidebar_img_container.fadeIn('fast');
                                 $sidebar.attr('data-image', '#');
                             }
 
-                            if ($full_page_background.length !== 0) {
+                            if ($full_page_background.length != 0) {
                                 $full_page_background.fadeIn('fast');
                                 $full_page.attr('data-image', '#');
                             }
 
                             background_image = true;
                         } else {
-                            if ($sidebar_img_container.length !== 0) {
+                            if ($sidebar_img_container.length != 0) {
                                 $sidebar.removeAttr('data-image');
                                 $sidebar_img_container.fadeOut('fast');
                             }
 
-                            if ($full_page_background.length !== 0) {
+                            if ($full_page_background.length != 0) {
                                 $full_page.removeAttr('data-image', '#');
                                 $full_page_background.fadeOut('fast');
                             }
@@ -276,7 +276,7 @@
 
                         $input = $(this);
 
-                        if (md.misc.sidebar_mini_active === true) {
+                        if (md.misc.sidebar_mini_active == true) {
                             $('body').removeClass('sidebar-mini');
                             md.misc.sidebar_mini_active = false;
 
@@ -305,13 +305,6 @@
 
                     });
                 });
-            });
-        </script>
-        <script>
-            $(document).ready(function () {
-                // Javascript method's body can be found in assets/js/demos.js
-                md.initDashboardPageCharts();
-
             });
         </script>
     </body>
