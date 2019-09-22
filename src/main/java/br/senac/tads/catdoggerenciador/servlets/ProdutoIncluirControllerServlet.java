@@ -31,7 +31,8 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         request.setAttribute("categorias", categoriaService.obterTodas());
         request.setAttribute("fornecedores", fornecedorService.obterTodos());
         request.setAttribute("racas", racaService.obterTodas());
@@ -39,8 +40,8 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         Utils utils = new Utils();
 
         String nome = request.getParameter("nome");

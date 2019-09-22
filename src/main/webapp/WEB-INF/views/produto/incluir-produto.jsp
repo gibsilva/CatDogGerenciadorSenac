@@ -3,9 +3,9 @@
     Created on : 21/09/2019, 22:06:46
     Author     : Gi
 --%>
-<%@include file="header.jsp" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@include file="../header.jsp" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<title>Cadastro de produto</title>
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -50,11 +50,11 @@
                             <p class="card-category">Adicione um novo produto</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="incluir-produto" method="post">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Nome/TÃ­tulo</label>
+                                            <label class="bmd-label-floating">Nome/Título</label>
                                             <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required>
                                         </div>
                                     </div>
@@ -72,13 +72,14 @@
                                         <label class="bmd-label-floating" for="inputState">Categoria</label>
                                         <select id="inputState" class="form-control" id="categoria" name="categoria" required>
                                             <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
+                                            <c:forEach var="c" items="${categorias}">
+                                                <option value="${c.id}">${c.nome}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">RaÃ§a</label>
+                                        <label class="bmd-label-floating" for="inputState">Raça</label>
                                         <select id="inputState" class="form-control" id="raca" name="raca" required>
                                             <option selected>Selecione</option>
                                             <option>...</option>
@@ -99,14 +100,14 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">DescriÃ§Ã£o</label>
+                                            <label class="bmd-label-floating">Descrição</label>
                                             <textarea class="form-control" rows="2"  maxlength="100" 
                                                       id="descricao" name="descricao" required=""></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">EspecificaÃ§Ã£o</label>
+                                            <label class="bmd-label-floating">Especificação</label>
                                             <textarea class="form-control" rows="2" maxlength="300" 
                                                       id="especificacao" name="especificacao" required></textarea>
                                         </div>
@@ -118,14 +119,14 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">PreÃ§o Compra</label>
+                                            <label class="bmd-label-floating">Preço Compra</label>
                                             <input type="text" class="form-control" id="precoCompra" name="precoCompra" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">PreÃ§o Venda</label>
+                                            <label class="bmd-label-floating">Preço Venda</label>
                                             <input type="text" class="form-control" id="precoVenda" name="PrecoVenda" required>
                                         </div>
                                     </div>
@@ -168,49 +169,49 @@
         </div>
     </div>
 </div>
-    
-    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
-        </div>
+
+<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
     </div>
-    <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 268px;">
-        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 88px;">
-        </div>
+</div>
+<div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 268px;">
+    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 88px;">
     </div>
+</div>
 
-    <script>
-        // FileInput
-        $('.form-file-simple .inputFileVisible').click(function () {
-            $(this).siblings('.inputFileHidden').trigger('click');
-        });
+<script>
+    // FileInput
+    $('.form-file-simple .inputFileVisible').click(function () {
+        $(this).siblings('.inputFileHidden').trigger('click');
+    });
 
-        $('.form-file-simple .inputFileHidden').change(function () {
-            var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
-            $(this).siblings('.inputFileVisible').val(filename);
-        });
+    $('.form-file-simple .inputFileHidden').change(function () {
+        var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+        $(this).siblings('.inputFileVisible').val(filename);
+    });
 
-        $('.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn').click(function () {
-            $(this).parent().parent().find('.inputFileHidden').trigger('click');
-            $(this).parent().parent().addClass('is-focused');
-        });
+    $('.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn').click(function () {
+        $(this).parent().parent().find('.inputFileHidden').trigger('click');
+        $(this).parent().parent().addClass('is-focused');
+    });
 
-        $('.form-file-multiple .inputFileHidden').change(function () {
-            var names = '';
-            for (var i = 0; i < $(this).get(0).files.length; ++i) {
-                if (i < $(this).get(0).files.length - 1) {
-                    names += $(this).get(0).files.item(i).name + ',';
-                } else {
-                    names += $(this).get(0).files.item(i).name;
-                }
+    $('.form-file-multiple .inputFileHidden').change(function () {
+        var names = '';
+        for (var i = 0; i < $(this).get(0).files.length; ++i) {
+            if (i < $(this).get(0).files.length - 1) {
+                names += $(this).get(0).files.item(i).name + ',';
+            } else {
+                names += $(this).get(0).files.item(i).name;
             }
-            $(this).siblings('.input-group').find('.inputFileVisible').val(names);
-        });
+        }
+        $(this).siblings('.input-group').find('.inputFileVisible').val(names);
+    });
 
-        $('.form-file-multiple .btn').on('focus', function () {
-            $(this).parent().siblings().trigger('focus');
-        });
+    $('.form-file-multiple .btn').on('focus', function () {
+        $(this).parent().siblings().trigger('focus');
+    });
 
-        $('.form-file-multiple .btn').on('focusout', function () {
-            $(this).parent().siblings().trigger('focusout');
-        });
-    </script>
+    $('.form-file-multiple .btn').on('focusout', function () {
+        $(this).parent().siblings().trigger('focusout');
+    });
+</script>
