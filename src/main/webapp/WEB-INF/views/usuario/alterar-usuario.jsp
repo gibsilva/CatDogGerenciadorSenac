@@ -3,7 +3,7 @@
     Created on : 21/09/2019, 22:11:39
     Author     : Gi
 --%>
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 

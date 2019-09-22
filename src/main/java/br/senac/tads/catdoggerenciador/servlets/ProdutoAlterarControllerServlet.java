@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.senac.tads.catdoggerenciador.services.ProdutoService;
 
-@WebServlet(name = "ProdutoEditarControllerServlet", urlPatterns = {"/editar-produto"})
-public class ProdutoEditarControllerServlet extends HttpServlet {
+@WebServlet(name = "ProdutoAlterarControllerServlet", urlPatterns = {"/alterar-produto"})
+public class ProdutoAlterarControllerServlet extends HttpServlet {
 
     private final ProdutoService produtoService;
 
-    public ProdutoEditarControllerServlet() {
+    public ProdutoAlterarControllerServlet() {
         this.produtoService = new ProdutoService();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/produto/editar-produto.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/produto/alterar-produto.jsp").forward(request, response);
     }
 
     @Override

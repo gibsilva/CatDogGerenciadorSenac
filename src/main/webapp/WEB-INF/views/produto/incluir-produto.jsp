@@ -6,12 +6,14 @@
 <%@include file="../header.jsp" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <title>Cadastro de produto</title>
+
+
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Produto Usuario</a>
+                <a class="navbar-brand" href="#pablo">Novo Produto</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -68,6 +70,16 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="form-group col-md-2">
+                                        <label class="bmd-label-floating" for="inputState">Tipo de Animal</label>
+                                        <select id="inputState" class="form-control" id="tipoAnimal" name="tipoAnimal" required>
+                                            <option selected>Selecione</option>
+                                            <c:forEach var="c" items="${categorias}">
+                                                <option value="${c.id}">${c.nome}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Categoria</label>
                                         <select id="inputState" class="form-control" id="categoria" name="categoria" required>

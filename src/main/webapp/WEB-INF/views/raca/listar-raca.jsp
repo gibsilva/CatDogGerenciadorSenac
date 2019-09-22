@@ -7,7 +7,7 @@
 <%@include file="../header.jsp" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <head>
-    <title>Consulta de Categoria</title>
+    <title>Consulta de Raças</title>
 </head>
 
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="abab6d38-69e0-098a-7dec-274e5b37e67c">
@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Consulta de Produto</a>
+                <a class="navbar-brand" href="#pablo">Consulta de Raças</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -51,20 +51,32 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
-                            <h4 class="card-title ">Produtos</h4>
-                            <p class="card-category">Lista de produtos cadastrados</p>
+                            <h4 class="card-title ">Raças</h4>
+                            <p class="card-category">Lista de raças cadastradas</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table">
-                                    <thead class=" text-primary">
+                                    <thead >
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Categoria</th>
+                                            <th class="text-center"><b>ID</b></th>
+                                            <th class="text-center"><b>Raça</b></th>
+                                            <th class="text-center"><b>Ação</b></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr></tr>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">Rottweller</td>
+                                            <td class="td-actions text-center">
+                                                <button type="button" rel="tooltip" class="btn btn-success">
+                                                    <i class="fas fa-pen"></i>
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-danger">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

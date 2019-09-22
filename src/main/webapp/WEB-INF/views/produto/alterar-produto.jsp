@@ -3,7 +3,7 @@
     Created on : 21/09/2019, 22:06:46
     Author     : Gi
 --%>
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
@@ -68,6 +68,16 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="form-group col-md-2">
+                                        <label class="bmd-label-floating" for="inputState">Tipo de Animal</label>
+                                        <select id="inputState" class="form-control" id="tipoAnimal" name="tipoAnimal" required>
+                                            <option selected>Selecione</option>
+                                            <c:forEach var="c" items="${categorias}">
+                                                <option value="${c.id}">${c.nome}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                            
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Categoria</label>
                                         <select id="inputState" class="form-control" id="categoria" name="categoria" required>

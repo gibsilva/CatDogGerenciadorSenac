@@ -8,9 +8,11 @@ import java.sql.SQLException;
 
 public class ConexaoBd {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/catdog";
+    private static final String URL = "jdbc:mysql://localhost:3307/catdog";
+    //private static final String URL = "jdbc:mysql://localhost:3306/catdog";
     private static final String USER = "root";
-    private static final String PASS = "mysql";
+    //private static final String PASS = "mysql";
+    private static final String PASS = "";
     
     public Connection getConnection() {
         try {

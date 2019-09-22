@@ -6,13 +6,13 @@
 
 <%@include file="../header.jsp" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<title>Cadastro de Categoria</title>
+<title>Cadastro de Raças</title>
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Cadastro de Categoria</a>
+                <a class="navbar-brand" href="#pablo">Cadastro de Raças</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -47,21 +47,21 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
-                            <h4 class="card-title">Nova Categoria</h4>
-                            <p class="card-category">Adicione uma nova categoria</p>
+                            <h4 class="card-title">Nova Raça</h4>
+                            <p class="card-category">Adicione uma nova raça</p>
                         </div>
                         <div class="card-body">
                             <form action="incluir-categoria" method="post">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Nome da categoria</label>
-                                            <input type="text" class="form-control" id="categoria" name="categoria" required>
+                                            <label class="bmd-label-floating">Nome da Raça</label>
+                                            <input type="text" class="form-control" id="raca" name="raca" required>
                                         </div>
                                     </div>
                                 </div>
                                 <br>
-                                <button type="submit" class="btn btn-success pull-right">Alterar</button>
+                                <button type="submit" class="btn btn-success pull-right">Salvar</button>
                                 <a href="listar-categoria" class="btn btn-danger pull-right">Cancelar<a/>
                                     <div class="clearfix"></div>
                             </form>

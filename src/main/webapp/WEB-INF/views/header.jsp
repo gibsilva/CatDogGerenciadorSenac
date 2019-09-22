@@ -37,41 +37,143 @@
             </div>
             <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="5209c95b-97dd-a4e7-730a-82657e683a22">
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="incluirUsuario.jsp">
-                            <i class="fas fa-user"></i>
-                            <p>Adicionar Usuario</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="listaUsuario.jsp">
+
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#usuarios">
                             <i class="fas fa-users"></i>
-                            <p>Consultar Usuarios</p>
+                            <p> Usuários
+                                <b class="caret"></b>
+                            </p>
                         </a>
+                        <div class="collapse" id="usuarios">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="incluir-usuario">
+                                        <i class="fas fa-user"></i>
+                                        <p>Adicionar Usuário</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="listar-usuario">
+                                        <i class="fas fa-users"></i>
+                                        <p>Consultar Usuários</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="incluirProduto.jsp">
+
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#produtos">
                             <i class="fas fa-paw"></i>
-                            <p>Adicionar Produto</p>
+                            <p> Produtos
+                                <b class="caret"></b>
+                            </p>
                         </a>
+                        <div class="collapse" id="produtos">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="incluir-produto">
+                                        <i class="fas fa-dog"></i>
+                                        <p>Adicionar Produto</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="listar-produto">
+                                        <i class="fas fa-cat"></i>
+                                        <p>Consultar Produtos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="listaProduto.jsp">
-                            <i class="fas fa-paw"></i>
-                            <p>consultar Produtos</p>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-toggle="collapse" href="#categoria" aria-expanded="false">
+                            <i class="material-icons">image</i>
+                            <p> Categorias
+                                <b class="caret"></b>
+                            </p>
                         </a>
+                        <div class="collapse" id="categoria" style="">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="incluir-categoria">
+                                        <i class="fas fa-plus"></i>
+                                        <span class="sidebar-normal">Adicionar Categoria </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="listar-categoria">
+                                        <i class="fas fa-list"></i>
+                                        <span class="sidebar-normal">Consultar Categorias</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-toggle="collapse" href="#raca" aria-expanded="false">
+                            <i class="fas fa-dog"></i>
+                            <p> Raças
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="raca" style="">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="incluir-raca">
+                                        <i class="fas fa-plus"></i>
+                                        <span class="sidebar-normal">Adicionar Raças </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="listar-raca">
+                                        <i class="fas fa-list"></i>
+                                        <span class="sidebar-normal">Consultar Raças</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" data-toggle="collapse" href="#fornecedor" aria-expanded="false">
+                            <i class="material-icons">image</i>
+                            <p> Fornecedores
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="fornecedor" style="">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="incluir-fornecedor">
+                                        <i class="fas fa-plus"></i>
+                                        <span class="sidebar-normal">Adicionar Fornecedores </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="listar-fornecedor">
+                                        <i class="fas fa-list"></i>
+                                        <span class="sidebar-normal">Consultar Fornecedores</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples" aria-expanded="false">
                             <i class="fas fa-file-alt"></i>
                             <p>Relatorios</p>
-                        </a>
+                        </a> 
                     </li>
                 </ul>
 
@@ -307,8 +409,6 @@
             });
         </script>
     </body>
-
-
 </html>
 
 

@@ -32,7 +32,7 @@ public class CategoriaListarControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Categoria> categorias = categoriaService.obterTodas();
         request.setAttribute("categorias", categorias);
-        request.getRequestDispatcher("/WEB-INF/views/categoria/lista-categoria.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/categoria/listar-categoria.jsp").forward(request, response);
     }
 
 }

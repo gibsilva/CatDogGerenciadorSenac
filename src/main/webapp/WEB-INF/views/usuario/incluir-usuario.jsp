@@ -3,7 +3,7 @@
     Created on : Sep 19, 2019, 2:56:56 PM
     Author     : Girlaine
 --%>
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
