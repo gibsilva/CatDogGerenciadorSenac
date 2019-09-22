@@ -58,124 +58,60 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table">
-                                    <thead class=" text-primary">
-                                        <tr><th>
-                                                ID
-                                            </th>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Country
-                                            </th>
-                                            <th>
-                                                City
-                                            </th>
-                                            <th>
-                                                Salary
-                                            </th>
-                                        </tr></thead>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Name</th>
+                                            <th>Job Position</th>
+                                            <th>Since</th>
+                                            <th class="text-right">Salary</th>
+                                            <th class="text-right">Actions</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>
-                                                Dakota Rice
-                                            </td>
-                                            <td>
-                                                Niger
-                                            </td>
-                                            <td>
-                                                Oud-Turnhout
-                                            </td>
-                                            <td class="text-primary">
-                                                $36,738
+                                            <td class="text-center">1</td>
+                                            <td>Andrew Mike</td>
+                                            <td>Develop</td>
+                                            <td>2013</td>
+                                            <td class="text-right">&euro; 99,225</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" class="btn btn-success">
+                                                    <i class="fas fa-pen"></i>
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-danger">
+                                                    <i class="material-icons">close</i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                2
-                                            </td>
-                                            <td>
-                                                Minerva Hooper
-                                            </td>
-                                            <td>
-                                                Curaçao
-                                            </td>
-                                            <td>
-                                                Sinaai-Waas
-                                            </td>
-                                            <td class="text-primary">
-                                                $23,789
+                                            <td class="text-center">2</td>
+                                            <td>John Doe</td>
+                                            <td>Design</td>
+                                            <td>2012</td>
+                                            <td class="text-right">&euro; 89,241</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" class="btn btn-success btn-simple">
+                                                    <i class="fas fa-pen"></i>
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
+                                                    <i class="material-icons">close</i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                3
-                                            </td>
-                                            <td>
-                                                Sage Rodriguez
-                                            </td>
-                                            <td>
-                                                Netherlands
-                                            </td>
-                                            <td>
-                                                Baileux
-                                            </td>
-                                            <td class="text-primary">
-                                                $56,142
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                4
-                                            </td>
-                                            <td>
-                                                Philip Chaney
-                                            </td>
-                                            <td>
-                                                Korea, South
-                                            </td>
-                                            <td>
-                                                Overland Park
-                                            </td>
-                                            <td class="text-primary">
-                                                $38,735
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                5
-                                            </td>
-                                            <td>
-                                                Doris Greene
-                                            </td>
-                                            <td>
-                                                Malawi
-                                            </td>
-                                            <td>
-                                                Feldkirchen in Kärnten
-                                            </td>
-                                            <td class="text-primary">
-                                                $63,542
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                6
-                                            </td>
-                                            <td>
-                                                Mason Porter
-                                            </td>
-                                            <td>
-                                                Chile
-                                            </td>
-                                            <td>
-                                                Gloucester
-                                            </td>
-                                            <td class="text-primary">
-                                                $78,615
+                                            <td class="text-center">3</td>
+                                            <td>Alex Mike</td>
+                                            <td>Design</td>
+                                            <td>2010</td>
+                                            <td class="text-right">&euro; 92,144</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" class="btn btn-success btn-simple">
+                                                    <i class="fas fa-pen"></i>
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
+                                                    <i class="material-icons">close</i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
