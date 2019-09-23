@@ -24,7 +24,7 @@
         <link href="assets/css/material-dashboard.min.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="sidebar" data-color="azure" data-background-color="purple" data-image="assets/img/sidebar-1.jpg" >
+        <div class="sidebar" data-color="azure" data-background-color="white" data-image="assets/img/A5A5AC43-AB6F-4152-877B-28DBEA616A8E.jpg" >
             <!--
               Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
       
@@ -189,7 +189,7 @@
 
                 <!-- imagem background sidebar-->
             </div>
-            <div class="sidebar-background" style="background-image: url(assets/img/sidebar-1.jpg)">
+            <div class="sidebar-background" style="background-image: url(assets/img/sA5A5AC43-AB6F-4152-877B-28DBEA616A8E.jpg)">
             </div>
         </div>
 

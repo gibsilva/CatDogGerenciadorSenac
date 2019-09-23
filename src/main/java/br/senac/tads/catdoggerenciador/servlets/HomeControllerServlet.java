@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gi
  */
-@WebServlet(name = "HomeControllerServlet", urlPatterns = {"/home"})
+@WebServlet(name = "HomeControllerServlet", urlPatterns = {"/header"})
 public class HomeControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/home/home.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/header.jsp").forward(request, response);
     }
 
 }

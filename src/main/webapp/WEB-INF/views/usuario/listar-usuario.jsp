@@ -45,6 +45,7 @@
         </div>
     </nav>
     <!-- End Navbar -->
+    
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -55,6 +56,15 @@
                             <p class="card-category">Lista de usuários cadastrados</p>
                         </div>
                         <div class="card-body">
+                            <span class="bmd-form-group col-md-8">
+                                <div class="input-group no-border">
+                                    <input type="text" value="" class="form-control" placeholder="Pesquisar">
+                                    <button type="submit" class="btn btn-info btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
+                            </span>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
