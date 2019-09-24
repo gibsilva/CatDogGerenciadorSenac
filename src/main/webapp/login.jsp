@@ -23,7 +23,7 @@
         <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>
-            Material Dashboard PRO by Creative Tim
+          Login
         </title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
         <!--     Fonts and icons     -->
@@ -34,6 +34,7 @@
               crossorigin='anonymous'>
         <!-- CSS Files -->
         <link href="assets/css/material-dashboard.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body class="off-canvas-sidebar">
@@ -44,34 +45,21 @@
         </noscript>
         <!-- End Google Tag Manager (noscript) -->
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
-            <div class="container">
-                <div class="navbar-wrapper">
-                    <a class="navbar-brand" href="#pablo">CatDog</a>
-                </div>
-
-
-            </div>
-        </nav>
-        <!-- End Navbar -->
+        
+        <!-- End Navbar --> 
         <div class="wrapper wrapper-full-page">
-            <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('assets/img/IMG_8823.jpg'); background-size: cover; background-position: top center;">
+            <div class="page-header login-page header-filter" filter-color="black">
                 <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
                 <div class="container">
-                    <div class="row">
+                    <div class="row align-items-center h-100">
                         <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
                             <form class="form" method="" action="">
                                 <div class="card card-login card-hidden">
                                     <div class="card-header card-header-info text-center">
-                                        <h4 class="card-title">Login</h4>
-                                        <br>
-
-
+                                        <h3 class="card-title">Login</h3>
                                     </div>
                                     <div class="card-body ">
-
                                         <br>
-
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
@@ -80,9 +68,7 @@
                                             </div>
                                             <input type="email" class="form-control" placeholder="Email..." required>
                                         </div>
-
                                         <br>
-
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
@@ -91,7 +77,6 @@
                                             </div>
                                             <input type="password" class="form-control" placeholder="Password..." required="">
                                         </div>
-
                                     </div>
                                     <div class="card-footer justify-content-center">
                                         <a href="WEB-INF/views/header.jsp" class="btn btn-success btn-lg">Entrar</a>
