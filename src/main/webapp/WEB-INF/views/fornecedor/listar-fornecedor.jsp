@@ -97,11 +97,11 @@
                                             <td class="text-center">Andrew Mike</td>
                                             <td class="text-center">&euro; 99,225</td>
                                             <td class="td-actions text-center">
-                                                <button type="button" rel="tooltip" class="btn btn-success">
+                                                <button type="button" rel="tooltip" class="btn  btn-link btn-success">
                                                     <i class="fas fa-pen"></i>
                                                 </button>
-                                                <button type="button" rel="tooltip" class="btn btn-danger">
-                                                    <i class="material-icons">close</i>
+                                                <button type="button" rel="tooltip" class="btn  btn-lg btn-link btn-danger">
+                                                    <i class="fas fa-times"></i>
                                                 </button>
                                             </td>
                                         </tr>

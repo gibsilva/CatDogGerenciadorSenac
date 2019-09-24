@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ProdutoDetalhesControllerServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.getRequestDispatcher("/WEB-INF/views/produto/detalhesProduto.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/views/produto/detalhes-produto.jsp").forward(request, response);
     }
 }

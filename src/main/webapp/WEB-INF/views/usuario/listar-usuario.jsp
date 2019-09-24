@@ -45,7 +45,7 @@
         </div>
     </nav>
     <!-- End Navbar -->
-    
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -87,11 +87,11 @@
                                             <td class="text-center">2013</td>
                                             <td class="text-center">Admin</td>
                                             <td class="td-actions text-center">
-                                                <button type="button" rel="tooltip" class="btn btn-success">
-                                                    <i class="fas fa-user-edit"></i>
+                                                <button type="button" rel="tooltip" class="btn  btn-link btn-success">
+                                                    <i class="fas fa-pen"></i>
                                                 </button>
-                                                <button type="button" rel="tooltip" class="btn btn-danger">
-                                                    <i class="material-icons">close</i>
+                                                <button type="button" rel="tooltip" class="btn  btn-lg btn-link btn-danger">
+                                                    <i class="fas fa-times"></i>
                                                 </button>
                                             </td>
                                         </tr> 
@@ -105,12 +105,13 @@
         </div>
     </div>
 
-    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">            
-        </div>            
-    </div>
-    <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 625px;">
-        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 316px;">            
-        </div>            
-    </div>       
+
 </div>
+<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">            
+    </div>            
+</div>
+<div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 625px;">
+    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 316px;">            
+    </div>            
+</div>  
