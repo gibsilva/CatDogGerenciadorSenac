@@ -31,7 +31,7 @@ public class CategoriaIncluirControllerServlet extends HttpServlet {
 
         try {
             if (notificacoes.isEmpty()) {
-                response.sendRedirect(request.getContextPath() + "/WEB-INF/views/categoria/listar-categoria.jsp");
+                response.sendRedirect(request.getContextPath() + "/listar-categoria");
             } else {
                 request.setAttribute("notificacoes", notificacoes);
                 request.getRequestDispatcher("/WEB-INF/views/categoria/incluir-categoria.jsp").forward(request, response);

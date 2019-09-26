@@ -92,7 +92,7 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
 
         try {
             this.stmt = conn.prepareStatement("insert into fornecedor(nome, razaosocial, documento, ativo,"
-                    + "cep, logradouro, bairro, cidade, estado, numero, complemento) values (?, ?, ?, ?, ?)");
+                    + "cep, logradouro, bairro, cidade, estado, numero, complemento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             this.stmt.setString(1, fornecedor.getNome());
             this.stmt.setString(2, fornecedor.getRazaoSocial());

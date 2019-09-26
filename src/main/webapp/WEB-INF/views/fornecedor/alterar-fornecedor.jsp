@@ -6,13 +6,13 @@
 
 <%@include file="../header.jsp" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<title>Cadastro de Fornecedor</title>
+<title>Alteração de Fornecedores</title>
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Cadastro de Fornecedor</a>
+                <a class="navbar-brand" href="#pablo">Alteração de Fornecedor</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -49,8 +49,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
-                            <h4 class="card-title">Novo Fornecedor</h4>
-                            <p class="card-category">Adicione um novo fornecedor</p>
+                            <h4 class="card-title">Alterar Fornecedores</h4>
+                            <p class="card-category">Altere de dados dos fornecedores</p>
                         </div>
                         <div class="card-body">
                             <form action="alterar-fornecedor" method="post">

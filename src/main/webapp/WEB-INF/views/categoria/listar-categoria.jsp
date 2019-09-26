@@ -76,18 +76,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">Andrew Mike</td>
-                                            <td class="text-center">&euro; 99,225</td>
-                                            <td class="td-actions text-center">
-                                                <button type="button" rel="tooltip" class="btn  btn-link btn-success">
-                                                    <i class="fas fa-pen"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" class="btn  btn-lg btn-link btn-danger">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <c:forEach var="c" items="${categorias}">
+                                            <tr>
+                                                <td class="text-center">${c.id}</td>
+                                                <td class="text-center">${c.nome}</td>
+                                                <td class="td-actions text-center">
+                                                    <c:url var="alterarCategoria" value="/alterar-categoria">
+                                                        <c:param name="id" value="${c.id}" />
+                                                    </c:url>
+                                                    <a href="${alterarCategoria}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Categoria"><i class="fas fa-pen"></i></a>
+                                                    <button type="button" rel="tooltip" class="btn  btn-lg btn-link btn-danger">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

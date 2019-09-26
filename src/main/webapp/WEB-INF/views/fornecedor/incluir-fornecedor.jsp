@@ -51,7 +51,7 @@
                             <p class="card-category">Adicione um novo fornecedor</p>
                         </div>
                         <div class="card-body">
-                            <form action="incluir-categoria" method="post">
+                            <form action="incluir-fornecedor" method="post">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
