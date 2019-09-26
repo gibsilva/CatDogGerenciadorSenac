@@ -26,4 +26,5 @@ public interface IImagemDao {
 
     void excluir(Imagem imagem);
 
+    void excluirPorIdProduto(int id);
 }

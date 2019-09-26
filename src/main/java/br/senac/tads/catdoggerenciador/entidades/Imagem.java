@@ -55,5 +55,4 @@ public class Imagem extends Entidade {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
 }

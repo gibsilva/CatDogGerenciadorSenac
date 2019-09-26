@@ -5,6 +5,7 @@
 --%>
 <%@include file="../header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <title>Detalhes do produto</title>
 
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
@@ -52,18 +53,17 @@
                         <div class="card-body">
                             <div id="carouselExampleControls" class="carousel slide"
                                  data-ride="carousel">
+
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="d-block carousel-picture "
-                                             src="https://www.petlove.com.br/images/products/203974/product/Ra%C3%A7%C3%A3o_Premier_Pet_Ra%C3%A7as_Espec%C3%ADficas_Malt%C3%AAs_Filhotes_-_1_Kg_1199952.jpg?1556369259"
-                                             alt="First slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block carousel-picture"
-                                             src="https://www.petlove.com.br/images/products/203974/product/Ra%C3%A7%C3%A3o_Premier_Pet_Ra%C3%A7as_Espec%C3%ADficas_Malt%C3%AAs_Filhotes_-_1_Kg_1199952.jpg?1556369259"
-                                             alt="Second slide">
-                                    </div>
+                                    <c:forEach var="c" items="${produto.imagens}">
+                                        <div class="carousel-item active">
+                                            <img class="d-block carousel-picture "
+                                                 src="${c.caminho}"
+                                                 alt="${c.nome}">
+                                        </div>
+                                    </c:forEach>
                                 </div>
+
                                 <a class="carousel-control-prev" href="#carouselExampleControls"
                                    role="button" data-slide="prev"> <span
                                         class="carousel-control-prev-icon iconCarousel" aria-hidden="true"></span>
@@ -89,54 +89,36 @@
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Nome/Título</label>
-                                            <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required>
+                                            <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" readonly value="${produto.nome}">
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Quantidade</label>
-                                            <input type="text" class="form-control" id="quantidade" name="quantidade" required>
+                                            <input type="text" class="form-control" id="quantidade" name="quantidade" readonly value="${produto.quantidade}">
                                         </div>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="form-group col-md-3">
                                         <label class="bmd-label-floating" for="inputState">Tipo de Animal</label>
-                                        <select id="inputState" class="form-control" id="tipoAnimal" name="tipoAnimal" required>
-                                            <option selected>Selecione</option>
-                                            <c:forEach var="c" items="${categorias}">
-                                                <option value="${c.id}">${c.nome}</option>
-                                            </c:forEach>
-                                        </select>
+                                        <input type="text" class="form-control" id="tipoAnimal" name="tipoAnimal" readonly value="${produto.getTipoAnimal().toString()}">
                                     </div>
 
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Raça</label>
-                                        <select id="inputState" class="form-control" id="raca" name="raca">
-                                            <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
-                                        </select>
+                                    <div class="form-group col-md-3">
+                                        <label class="bmd-label-floating" for="inputState">Porte de Animal</label>
+                                        <input type="text" class="form-control" id="porteAnimal" name="porteAnimal" readonly value="${produto.getPorteAnimal().toString()}">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label class="bmd-label-floating" for="categoria">Categoria</label>
+                                        <input type="text" class="form-control" id="categoria" name="categoria" readonly value="${produto.categoria.nome}">
                                     </div>
 
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Categoria</label>
-                                        <select id="inputState" class="form-control" id="categoria" name="categoria" required>
-                                            <option selected>Selecione</option>
-                                            <c:forEach var="c" items="${categorias}">
-                                                <option value="${c.id}">${c.nome}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floatin" for="inputState">Fornecedor</label>
-                                        <select id="inputState" class="form-control" id="fornecedor" name="fornecedor" required>
-                                            <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
-                                        </select>
+                                    <div class="form-group col-md-3">
+                                        <label class="bmd-label-floating" for="fornecedor">Fornecedor</label>
+                                        <input type="text" class="form-control" id="fornecedor" name="fornecedor" readonly value="${produto.fornecedor.nome}">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -144,14 +126,14 @@
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Descrição</label>
                                             <textarea class="form-control" rows="2"  maxlength="100" 
-                                                      id="descricao" name="descricao" required=""></textarea>
+                                                      id="descricao" name="descricao" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Especificação</label>
                                             <textarea class="form-control" rows="2" maxlength="300" 
-                                                      id="especificacao" name="especificacao" required></textarea>
+                                                      id="especificacao" name="especificacao" readonly></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -159,28 +141,32 @@
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Preço Compra</label>
-                                            <input type="text" class="form-control" id="precoCompra" name="precoCompra" required>
+                                            <input type="text" class="form-control" id="precoCompra" name="precoCompra" readonly value="<fmt:formatNumber value="${produto.precoCompra}" type="currency"></fmt:formatNumber>">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Preço Venda</label>
-                                            <input type="text" class="form-control" id="precoVenda" name="PrecoVenda" required>
+                                        <div class="col-md-3">
+                                            <div class="form-group bmd-form-group">
+                                                <label class="bmd-label-floating">Preço Venda</label>
+                                                <input type="text" class="form-control" id="precoVenda" name="PrecoVenda" readonly value="<fmt:formatNumber value="${produto.precoVenda}" type="currency"></fmt:formatNumber>">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Status</label>
-                                        <select id="inputState" class="form-control" id="status" name="status" required>
-                                            <option selected>Selecione</option>
-                                            <option>Ativo</option>
-                                            <option>Inativo</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label class="bmd-label-floating" for="status">Status</label>
+                                        <c:if test="${produto.ativo == true}">
+                                            <input type="text" class="form-control" id="status" name="status" readonly value="Ativo">
+                                        </c:if>
+                                        <c:if test="${produto.ativo == false}">
+                                            <input type="text" class="form-control" id="status" name="status" readonly value="Inativo">
+                                        </c:if>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success pull-right">Alterar</button>
+                                <c:url var="alterarProduto" value="/alterar-produto">
+                                    <c:param name="id" value="${produto.id}" />
+                                </c:url>
+                                <a href="${alterarProduto}" class="btn btn-success pull-rights" data-toggle="tooltip" data-placement="left" title="Alterar Produto">Alterar</a>
                                 <button type="" class="btn btn-danger pull-right">Cancelar</button>
                                 <div class="clearfix"></div>
 
@@ -192,3 +178,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        document.getElementById('descricao').value = '${produto.descricao}';
+        document.getElementById('especificacao').value = '${produto.especificacao}';
+    });
+</script>

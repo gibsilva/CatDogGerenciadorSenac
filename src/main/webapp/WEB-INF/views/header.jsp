@@ -38,7 +38,7 @@
             <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="5209c95b-97dd-a4e7-730a-82657e683a22">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="dashboard">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>

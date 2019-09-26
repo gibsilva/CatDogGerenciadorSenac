@@ -1,11 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.senac.tads.catdoggerenciador.services;
 
+import br.senac.tads.catdoggerenciador.dao.CategoriaDao;
+import br.senac.tads.catdoggerenciador.dao.FornecedorDao;
+import br.senac.tads.catdoggerenciador.dao.ImagemDao;
 import br.senac.tads.catdoggerenciador.dao.ProdutoDao;
+import br.senac.tads.catdoggerenciador.entidades.Imagem;
 import br.senac.tads.catdoggerenciador.entidades.Notificacao;
 import br.senac.tads.catdoggerenciador.entidades.Produto;
 import java.util.List;
@@ -17,11 +16,17 @@ import java.util.List;
 public class ProdutoService {
 
     private final ProdutoDao produtoDao;
+    private final FornecedorDao fornecedorDao;
+    private final ImagemDao imagemDao;
+    private final CategoriaDao categoriaDao;
     private final Notificacao notificacao;
 
     public ProdutoService() {
         this.notificacao = new Notificacao();
         this.produtoDao = new ProdutoDao();
+        this.fornecedorDao = new FornecedorDao();
+        this.imagemDao = new ImagemDao();
+        this.categoriaDao = new CategoriaDao();
     }
 
     private void validarQuantidade(int quantidade) {
@@ -39,15 +44,28 @@ public class ProdutoService {
     private boolean validarProduto(Produto produto) {
         validarQuantidade(produto.getQuantidade());
         validarValores(produto.getPrecoCompra(), produto.getPrecoVenda());
-
         return this.notificacao.temNotificacoes();
     }
 
     public Produto obterPorId(int id) {
-        return this.produtoDao.obterPorId(id);
+        Produto produto = this.produtoDao.obterPorId(id);
+        produto.setImagens(this.imagemDao.obterPorIdProduto(produto.getId()));
+        produto.setFornecedor(this.fornecedorDao.obterPorId(produto.getIdFornecedor()));
+        produto.setCategoria(this.categoriaDao.obterPorId(produto.getIdCategoria()));
+        return produto;
     }
 
     public List<Produto> obterTodos() {
+        List<Produto> produtos = this.produtoDao.obterTodos();
+        for (Produto p : produtos) {
+            p.setImagens(this.imagemDao.obterPorIdProduto(p.getId()));
+            p.setFornecedor(this.fornecedorDao.obterPorId(p.getIdFornecedor()));
+            p.setCategoria(this.categoriaDao.obterPorId(p.getIdCategoria()));
+        }
+        return produtos;
+    }
+
+    public List<Produto> obterTodosListar() {
         return this.produtoDao.obterTodos();
     }
 
@@ -55,11 +73,16 @@ public class ProdutoService {
         this.notificacao.limparNotificacoes();
     }
 
+    public int obterUltimoIdSalvo() {
+        return this.produtoDao.ultimoIdSalvo();
+    }
+
     public List<Notificacao> incluirOuAlterarProduto(Produto produto) throws Exception {
         try {
             if (validarProduto(produto)) {
                 if (produto.getId() == 0) {
                     produtoDao.salvar(produto);
+                    setIdProdutoImagens(produto);
                 } else {
                     produtoDao.alterar(produto);
                 }
@@ -67,6 +90,15 @@ public class ProdutoService {
             return this.notificacao.getNotificacaoes();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
+        }
+    }
+
+    public void setIdProdutoImagens(Produto p) {
+        int idProduto = obterUltimoIdSalvo();
+        for (Imagem img : p.getImagens()) {
+            img.setIdProduto(idProduto);
+            ImagemDao imagemDao = new ImagemDao();
+            imagemDao.salvar(img);
         }
     }
 }

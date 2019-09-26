@@ -21,7 +21,7 @@ public class ProdutoListarControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Produto> produtos = produtoService.obterTodos();
+        List<Produto> produtos = produtoService.obterTodosListar();
         request.setAttribute("produtos", produtos);
         request.getRequestDispatcher("/WEB-INF/views/produto/listar-produto.jsp").forward(request, response);
     }

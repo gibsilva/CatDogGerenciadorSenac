@@ -13,4 +13,6 @@ public interface IProdutoDao {
     void salvar(Produto produto);
 
     void alterar(Produto produto);
+    
+    int ultimoIdSalvo();
 }

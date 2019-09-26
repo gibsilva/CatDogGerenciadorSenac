@@ -52,7 +52,7 @@
                             <p class="card-category">Adicione um novo produto</p>
                         </div>
                         <div class="card-body">
-                            <form action="incluir-produto" method="post">
+                            <form action="incluir-produto" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
@@ -64,7 +64,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Quantidade</label>
-                                            <input type="text" class="form-control" id="quantidade" name="quantidade" required>
+                                            <input type="number" class="form-control" id="quantidade" name="quantidade" required>
                                         </div>
                                     </div>
                                 </div>
@@ -74,8 +74,8 @@
                                         <label class="bmd-label-floating" for="inputState">Tipo de Animal</label>
                                         <select id="inputState" class="form-control" id="tipoAnimal" name="tipoAnimal" required>
                                             <option selected>Selecione</option>
-                                            <c:forEach var="c" items="${categorias}">
-                                                <option value="${c.id}">${c.nome}</option>
+                                            <c:forEach var="c" items="${tipoAnimal}">
+                                                <option value="${c.ordinal()}">${c.toString()}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -91,19 +91,21 @@
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Raça</label>
-                                        <select id="inputState" class="form-control" id="raca" name="raca" required>
+                                        <label class="bmd-label-floating" for="inputState">Porte de Animal</label>
+                                        <select id="inputState" class="form-control" id="porteAnimal" name="porteAnimal" required>
                                             <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
+                                            <c:forEach var="c" items="${porteAnimal}">
+                                                <option value="${c.ordinal()}">${c.toString()}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floatin" for="inputState">Fornecedor</label>
                                         <select id="inputState" class="form-control" id="fornecedor" name="fornecedor" required>
                                             <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
+                                            <c:forEach var="c" items="${fornecedores}">
+                                                <option value="${c.id}">${c.nome}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
 
@@ -139,14 +141,14 @@
                                     <div class="col-md-2">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Preço Venda</label>
-                                            <input type="text" class="form-control" id="precoVenda" name="PrecoVenda" required>
+                                            <input type="text" class="form-control" id="precoVenda" name="precoVenda" required>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group form-file-upload form-file-multiple col-md-6">
-                                        <input type="file" multiple="file" class="inputFileHidden" accept="image/png, image/jpeg">
+                                        <input type="file" name="imagem" id="imagem" multiple="file" class="inputFileHidden" accept="image/png, image/jpeg, image/jpg">
                                         <div class="input-group">
                                             <input type="text" class="form-control inputFileVisible" placeholder="Selecionar Imagens" multiple>
                                             <span class="input-group-btn">

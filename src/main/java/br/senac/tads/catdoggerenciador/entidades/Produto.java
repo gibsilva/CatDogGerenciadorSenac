@@ -1,6 +1,7 @@
 package br.senac.tads.catdoggerenciador.entidades;
 
 import br.senac.tads.catdoggerenciador.entidades.Entidade;
+import br.senac.tads.catdoggerenciador.entidades.enums.EPorteAnimal;
 import br.senac.tads.catdoggerenciador.entidades.enums.ETipoAnimal;
 
 import java.util.ArrayList;
@@ -16,16 +17,16 @@ public class Produto extends Entidade {
     private int quantidade;
     private boolean ativo;
     private ETipoAnimal tipoAnimal;
-    private int idRaca;
     private int idCategoria;
     private Categoria categoria;
     private int idFornecedor;
     private Fornecedor fornecedor;
     private List<Imagem> imagens;
+    private EPorteAnimal porteAnimal;
 
     public Produto(int id, String nome, String descricao, String especificacao, 
             double precoCompra, double precoVenda, int quantidade, int idCategoria, 
-            int idFornecedor, int idRaca) {
+            int idFornecedor, EPorteAnimal porteAnimal, ETipoAnimal tipoAnimal) {
         super(id);
         this.nome = nome;
         this.descricao = descricao;
@@ -36,7 +37,8 @@ public class Produto extends Entidade {
         this.ativo = true;
         this.idCategoria = idCategoria;
         this.idFornecedor = idFornecedor;
-        this.idRaca = idRaca;
+        this.porteAnimal = porteAnimal;
+        this.tipoAnimal = tipoAnimal;
         this.imagens = new ArrayList<Imagem>();
     }
 
@@ -136,12 +138,12 @@ public class Produto extends Entidade {
         this.tipoAnimal = tipoAnimal;
     }
 
-    public int getIdRaca() {
-        return idRaca;
+    public EPorteAnimal getPorteAnimal(){
+        return this.porteAnimal;
     }
 
-    public void setIdRaca(int idRaca) {
-        this.idRaca = idRaca;
+    public void setPorteAnimal(EPorteAnimal porteAnimal){
+        this.porteAnimal = porteAnimal;
     }
 
     public double getPrecoVenda() {

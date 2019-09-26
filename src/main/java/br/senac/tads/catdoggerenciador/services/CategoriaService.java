@@ -36,9 +36,12 @@ public class CategoriaService {
         return this.notificacao.temNotificacoes();
     }
 
-    public List<Notificacao> salvar(Categoria categoria) {
+    public List<Notificacao> salvarOuAlterar(Categoria categoria) {
         if (validarCategoria(categoria)) {
-            this.categoriaDao.salvar(categoria);
+            if(categoria.getId() == 0)
+                this.categoriaDao.salvar(categoria);
+            else
+                this.categoriaDao.alterar(categoria);
         }
 
         return this.notificacao.getNotificacaoes();
@@ -46,6 +49,10 @@ public class CategoriaService {
     
     public List<Categoria> obterTodas(){
         return this.categoriaDao.obterTodas();
+    }
+    
+    public Categoria obterPorId(int id){
+        return this.categoriaDao.obterPorId(id);
     }
     
     public void limparNotificacoes(){

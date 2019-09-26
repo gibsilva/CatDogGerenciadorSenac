@@ -4,7 +4,8 @@
     Author     : Gi
 --%>
 <%@include file="../header.jsp" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
     <!-- Navbar -->
@@ -46,23 +47,23 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
-                            <h4 class="card-title">Novo Produto</h4>
-                            <p class="card-category">Adicione um novo produto</p>
+                            <h4 class="card-title">Alterar Produto</h4>
+                            <p class="card-category">Alteração de dados do produto</p>
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Nome/TÃ­tulo</label>
-                                            <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required>
+                                            <label class="bmd-label-floating">Nome/Título</label>
+                                            <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required value="${produto.nome}">
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Quantidade</label>
-                                            <input type="text" class="form-control" id="quantidade" name="quantidade" required>
+                                            <input type="text" class="form-control" id="quantidade" name="quantidade" required value="${produto.quantidade}">
                                         </div>
                                     </div>
                                 </div>
@@ -70,37 +71,40 @@
                                 <div class="row">
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Tipo de Animal</label>
-                                        <select id="inputState" class="form-control" id="tipoAnimal" name="tipoAnimal" required>
-                                            <option selected>Selecione</option>
+                                        <select class="form-control" id="tipoAnimal" name="tipoAnimal" required>
+                                            <option value="">Selecione</option>
+                                            <c:forEach var="c" items="${tipoAnimal}">
+                                                <option value="${c.ordinal()}">${c.toString()}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-2">
+                                        <label class="bmd-label-floating" for="inputState">Categoria</label>
+                                        <select class="form-control" id="categoria" name="categoria" required>
+                                            <option value="">Selecione</option>
                                             <c:forEach var="c" items="${categorias}">
                                                 <option value="${c.id}">${c.nome}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
-                                            
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Categoria</label>
-                                        <select id="inputState" class="form-control" id="categoria" name="categoria" required>
-                                            <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
 
                                     <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">RaÃ§a</label>
-                                        <select id="inputState" class="form-control" id="raca" name="raca" required>
-                                            <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
+                                        <label class="bmd-label-floating" for="inputState">Porte de Animal</label>
+                                        <select class="form-control" id="porteAnimal" name="porteAnimal" required>
+                                            <option value="">Selecione</option>
+                                            <c:forEach var="c" items="${porteAnimal}">
+                                                <option value="${c.ordinal()}">${c.toString()}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label class="bmd-label-floatin" for="inputState">Fornecedor</label>
-                                        <select id="inputState" class="form-control" id="fornecedor" name="fornecedor" required>
-                                            <option selected>Selecione</option>
-                                            <option>...</option>
-                                            <option>...</option>
+                                        <label class="bmd-label-floatin" for="fornecedor">Fornecedor</label>
+                                        <select class="form-control" id="fornecedor" name="fornecedor" required>
+                                            <option value="">Selecione</option>
+                                            <c:forEach var="c" items="${fornecedores}">
+                                                <option value="${c.id}">${c.nome}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
 
@@ -109,14 +113,14 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">DescriÃ§Ã£o</label>
+                                            <label class="bmd-label-floating">Descrição</label>
                                             <textarea class="form-control" rows="2"  maxlength="100" 
                                                       id="descricao" name="descricao" required=""></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">EspecificaÃ§Ã£o</label>
+                                            <label class="bmd-label-floating">Especificação</label>
                                             <textarea class="form-control" rows="2" maxlength="300" 
                                                       id="especificacao" name="especificacao" required></textarea>
                                         </div>
@@ -128,15 +132,15 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">PreÃ§o Compra</label>
-                                            <input type="text" class="form-control" id="precoCompra" name="precoCompra" required>
+                                            <label class="bmd-label-floating">Preço Compra</label>
+                                            <input type="text" class="form-control" id="precoCompra" name="precoCompra" required value="<fmt:formatNumber value="${produto.precoCompra}" type="number"></fmt:formatNumber>">
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">PreÃ§o Venda</label>
-                                            <input type="text" class="form-control" id="precoVenda" name="PrecoVenda" required>
+                                            <label class="bmd-label-floating">Preço Venda</label>
+                                            <input type="text" class="form-control" id="precoVenda" name="PrecoVenda" required value="<fmt:formatNumber value="${produto.precoVenda}" type="number"></fmt:formatNumber>">
                                         </div>
                                     </div>
                                 </div>
@@ -189,6 +193,16 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        document.getElementById('fornecedor').value = '${produto.getIdFornecedor()}';
+        document.getElementById('tipoAnimal').value = '${produto.getTipoAnimal().getOpcao()}';
+        document.getElementById('porteAnimal').value = '${produto.getPorteAnimal().getOpcao()}';
+        document.getElementById('categoria').value = '${produto.getIdCategoria()}';
+        document.getElementById('descricao').value = '${produto.descricao}';
+        document.getElementById('especificacao').value = '${produto.especificacao}';
+        document.getElementById('ativo').value = '${produto.ativo}';
+    });
+
     // FileInput
     $('.form-file-simple .inputFileVisible').click(function () {
         $(this).siblings('.inputFileHidden').trigger('click');
@@ -223,4 +237,6 @@
     $('.form-file-multiple .btn').on('focusout', function () {
         $(this).parent().siblings().trigger('focusout');
     });
+
+
 </script>

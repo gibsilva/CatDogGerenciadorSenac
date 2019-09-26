@@ -12,4 +12,20 @@ public enum ETipoAnimal {
     public int getOpcao() {
         return this.opcao;
     }
+
+    public static ETipoAnimal fromInt(int x) {
+        switch (x) {
+            case 1:
+                return Cachorro;
+            case 2:
+                return Gato;
+            case 3:
+                return Ave;
+            case 4:
+                return Peixe;
+            case 5:
+                return Roedor;
+        }
+        return null;
+    }
 }

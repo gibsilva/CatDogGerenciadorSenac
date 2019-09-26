@@ -142,6 +142,24 @@ public class ImagemDao extends BaseDao implements IImagemDao {
     }
 
     @Override
+    public void excluirPorIdProduto(int id) {
+        this.conn = conexao.getConnection();
+
+        try {
+            this.stmt = conn.prepareStatement("delete from imagem where idproduto = ?");
+
+            this.stmt.setInt(1, id);
+
+            this.stmt.executeUpdate();
+        } catch (SQLException e) {
+            this.conexao.closeConnection(conn, stmt, rs);
+            throw new RuntimeException(e.getMessage());
+        } finally {
+            this.conexao.closeConnection(conn, stmt, rs);
+        }
+    }
+
+    @Override
     public List<Imagem> obterPorIdProduto(int id) {
         this.conn = conexao.getConnection();
         Imagem img = null;

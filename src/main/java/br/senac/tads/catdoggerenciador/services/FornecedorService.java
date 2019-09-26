@@ -27,4 +27,21 @@ public class FornecedorService {
     public List<Fornecedor> obterTodos(){
         return this.fornecedorDao.obterTodos();
     }
+    
+    public List<Notificacao> incluirOuAlterar(Fornecedor fornecedor){
+        if(fornecedor.getId() == 0)
+            this.fornecedorDao.salvar(fornecedor);
+        else
+            this.fornecedorDao.alterar(fornecedor);
+        
+        return notificacao.getNotificacaoes();
+    }
+
+    public Fornecedor obterPorId(int id){
+        return this.fornecedorDao.obterPorId(id);
+    }
+
+    public void limparNotificacoes(){
+        this.notificacao.limparNotificacoes();
+    }
 }

@@ -76,7 +76,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">CEP</label>
-                                            <input type="text" class="form-control" id="cep" name="cep" required>
+                                            <input type="text" class="form-control" id="cep" name="cep" required maxlength="8" minlength="8">
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-success pull-right">Salvar</button>
-                                <a href="listar-categoria" class="btn btn-danger pull-right">Cancelar</a>
+                                <a href="dashboard" class="btn btn-danger pull-right">Cancelar</a>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -142,3 +142,53 @@
     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 88px;">
     </div>
 </div>
+
+
+<script>
+    //estamos usando uma api gratuita para a consulta de CEPs
+    $("#cep").focusout(function () {
+        if ($("#cep").val() === '00000-000' || $("#cep").val() === '11111-111') {
+            cepInvalido();
+        } else {
+            //Início do Comando AJAX
+            $.ajax({
+                //O campo URL diz o caminho de onde virá os dados
+                //É importante concatenar o valor digitado no CEP
+                url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                //Aqui você deve preencher o tipo de dados que será lido,
+                //no caso, estamos lendo JSON.
+                dataType: 'json',
+                //SUCESS é referente a função que será executada caso
+                //ele consiga ler a fonte de dados com sucesso.
+                //O parâmetro dentro da função se refere ao nome da variável
+                //que você vai dar para ler esse objeto.
+                success: function (resposta) {
+                    //Agora basta definir os valores que você deseja preencher
+                    //automaticamente nos campos acima.
+                    $("#logradouro").val(resposta.logradouro);
+                    $("#complemento").val(resposta.complemento);
+                    $("#bairro").val(resposta.bairro);
+                    $("#cidade").val(resposta.localidade);
+                    $("#estado").val(resposta.uf);
+                    //Vamos incluir para que o Número seja focado automaticamente
+                    //melhorando a experiência do usuário
+                    $("#numero").focus();
+                },
+                error: function (resposta) {
+                    cepInvalido();
+                }
+            });
+        }
+    });
+
+    function cepInvalido() {
+        alert('Cep inválido');
+        $('#cep').val('');
+        $("#logradouro").val('');
+        $("#complemento").val('');
+        $("#bairro").val('');
+        $("#cidade").val('');
+        $("#uf").val('');
+        $("#cep").focus();
+    }
+</script>

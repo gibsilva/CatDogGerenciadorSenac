@@ -1,5 +1,4 @@
 create database catdog;
-
 use catdog;
 
 CREATE TABLE fornecedor (
@@ -9,14 +8,20 @@ CREATE TABLE fornecedor (
   Documento varchar(14) NOT NULL,
   Ativo bit(1) NOT NULL,
   Cep varchar(8) NOT NULL,
-    DataHoraCriacao datetime NOT NULL default now(),
+  DataHoraCriacao datetime NOT NULL default now(),
+  Estado varchar(2) NOT NULL,
+  Cidade varchar(60) NOT NULL,
+  Bairro varchar(60) NOT NULL,
+  Logradouro varchar(80) NOT NULL,
+  Numero varchar(15) NOT NULL,
+  Complemento varchar(40) NOT NULL,
   PRIMARY KEY (Id)
   );
 
   CREATE TABLE categoria (
-  Id int NOT NULL auto_increment,
+  Id int NOT NULL AUTO_INCREMENT,
   Nome varchar(50) NOT NULL,
-  DataHoraCriacao datetime NOT NULL default now(),
+  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (Id)
   );
   
@@ -28,7 +33,7 @@ CREATE TABLE fornecedor (
   );
   
   CREATE TABLE produto (
-  Id int NOT NULL auto_increment,
+  Id int(11) NOT NULL AUTO_INCREMENT,
   Nome varchar(100) NOT NULL,
   Descricao varchar(100) NOT NULL,
   Especificacao varchar(300) NOT NULL,
@@ -36,19 +41,17 @@ CREATE TABLE fornecedor (
   PrecoVenda decimal(18,2) NOT NULL,
   Quantidade int(11) NOT NULL,
   Ativo bit(1) NOT NULL,
-  IdRaca int not null,
-  IdCategoria int NOT NULL,
-  IdFornecedor int NOT NULL,
-  TipoAnimal int,
-  DataHoraCriacao datetime NOT NULL default now(),
+  IdCategoria int(11) NOT NULL,
+  IdFornecedor int(11) NOT NULL,
+  TipoAnimal int(11) DEFAULT NULL,
+  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PorteAnimal int(11) NOT NULL,
   PRIMARY KEY (Id),
   KEY IX_Produto_IdCategoria (IdCategoria),
   KEY IX_Produto_IdFornecedor (IdFornecedor),
-  KEY IX_Produto_IdRaca (IdRaca),
   CONSTRAINT FK_Produto_Categoria_IdCategoria FOREIGN KEY (IdCategoria) REFERENCES categoria (Id) ON DELETE RESTRICT,
-  CONSTRAINT FK_Produto_Fornecedor_IdFornecedor FOREIGN KEY (IdFornecedor) REFERENCES fornecedor (Id) ON DELETE RESTRICT,
-  CONSTRAINT FK_Produto_Raca_IdRaca FOREIGN KEY (IdRaca) REFERENCES raca (Id) ON DELETE RESTRICT
-  );
+  CONSTRAINT FK_Produto_Fornecedor_IdFornecedor FOREIGN KEY (IdFornecedor) REFERENCES fornecedor (Id) ON DELETE RESTRICT
+);
   
   CREATE TABLE imagem (
   Id int  NOT NULL auto_increment,
@@ -57,33 +60,41 @@ CREATE TABLE fornecedor (
   Caminho varchar(20) NOT NULL,
   Tipo varchar(100) DEFAULT NULL,
   DataHoraCriacao datetime NOT NULL default now(),
+  Arquivo mediumblob,
   PRIMARY KEY (Id),
   KEY IX_Imagem_IdProduto (IdProduto),
-  CONSTRAINT FK_Imagem_Produto_IdProduto FOREIGN KEY (IdProduto) REFERENCES 
-  produto (Id) ON DELETE RESTRICT
+  CONSTRAINT FK_Imagem_Produto_IdProduto 
+  FOREIGN KEY (IdProduto) 
+  REFERENCES produto (Id) ON DELETE RESTRICT
   );
   
-create table usuario(
- Id int  NOT NULL auto_increment primary key,
- Nome varchar(80) not null,
- Cpf varchar(11) not null unique,
- Email varchar(80) not null unique,
- DataNasc datetime not null,
- Login varchar(20) not null,
- Permissao int not null,
- Senha varchar(16) not null,
- DataHoraCriacao datetime NOT NULL default now()
+CREATE TABLE usuario (
+  Id int(11) NOT NULL AUTO_INCREMENT,
+  Nome varchar(80) NOT NULL,
+  Cpf varchar(11) NOT NULL,
+  Email varchar(80) NOT NULL,
+  DataNasc datetime NOT NULL,
+  Login varchar(20) NOT NULL,
+  Permissao int(11) NOT NULL,
+  Senha varchar(16) NOT NULL,
+  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (Id),
+  UNIQUE KEY Cpf (Cpf),
+  UNIQUE KEY Email (Email)
 );
 
-create table cliente(
- Id int  NOT NULL auto_increment primary key,
- Nome varchar(80) not null,
- Cpf varchar(11) not null unique,
- Email varchar(80) not null unique,
- DataNasc datetime not null,
- Login varchar(20) not null,
- Permissao int not null,
- Senha varchar(16) not null,
- Cep varchar(8),
- DataHoraCriacao datetime NOT NULL default now()
-)
+CREATE TABLE cliente (
+  Id int(11) NOT NULL AUTO_INCREMENT,
+  Nome varchar(80) NOT NULL,
+  Cpf varchar(11) NOT NULL,
+  Email varchar(80) NOT NULL,
+  DataNasc datetime NOT NULL,
+  Login varchar(20) NOT NULL,
+  Permissao int(11) NOT NULL,
+  Senha varchar(16) NOT NULL,
+  Cep varchar(8) DEFAULT NULL,
+  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (Id),
+  UNIQUE KEY Cpf (Cpf),
+  UNIQUE KEY Email (Email)
+  );

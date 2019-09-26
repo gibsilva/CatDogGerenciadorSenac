@@ -9,5 +9,6 @@ public interface IFornecedorDao {
     List<Fornecedor> obterTodos();
     void salvar(Fornecedor fornecedor);
     void alterar(Fornecedor fornecedor);
+    void excluir(Fornecedor fornecedor);
     void alterarStatus(Fornecedor fornecedor);
 }

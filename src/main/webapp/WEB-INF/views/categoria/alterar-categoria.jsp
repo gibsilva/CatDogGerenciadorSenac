@@ -52,6 +52,7 @@
                         </div>
                         <div class="card-body">
                             <form action="incluir-categoria" method="post">
+                                <input type="hidden" id="id" name="id">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">

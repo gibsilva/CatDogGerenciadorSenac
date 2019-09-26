@@ -62,7 +62,7 @@
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-success pull-right">Salvar</button>
-                                <a href="listar-categoria" class="btn btn-danger pull-right">Cancelar<a/>
+                                <a href="dashboard" class="btn btn-danger pull-right">Cancelar</a>
                                     <div class="clearfix"></div>
                             </form>
                         </div>

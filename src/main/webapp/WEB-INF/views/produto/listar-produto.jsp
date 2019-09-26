@@ -3,6 +3,8 @@
     Created on : 22/09/2019, 00:08:25
     Author     : Gi
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="../header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,21 +58,12 @@
                             <p class="card-category">Lista de produtos cadastrados</p>
                         </div>
                         <div class="card-body">
-                            <span class="bmd-form-group col-md-8">
-                                <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Pesquisar">
-                                    <button type="submit" class="btn btn-info btn-round btn-just-icon">
-                                        <i class="material-icons">search</i>
-                                        <div class="ripple-container"></div>
-                                    </button>
-                                </div>
-                            </span>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><b>ID</b></th>
-                                            <th class="text-center"><b>Nome/Titulo</b>s</th>
+                                            <th class="text-center"><b>Nome/Título</b></th>
                                             <th class="text-center"><b>Preço Venda</b></th>
                                             <th class="text-center"><b>Quantidade</b></th>
                                             <th class="text-center"><b>Status</b></th>
@@ -78,21 +71,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">Andrew Mike</td>
-                                            <td class="text-center">Develop</td>
-                                            <td class="text-center">2013</td>
-                                            <td class="text-center">&euro; 99,225</td>
-                                            <td class="td-actions text-center">
-                                                <button type="button" rel="tooltip" class="btn  btn-link btn-success">
-                                                    <i class="fas fa-pen"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" class="btn  btn-lg btn-link btn-danger">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <c:forEach var="c" items="${produtos}">
+                                            <tr>
+                                                <td class="text-center">${c.id}</td>
+                                                <td class="text-center">${c.nome}</td>
+                                                <td class="text-center"><fmt:formatNumber value="${c.precoVenda}" type="currency"></fmt:formatNumber></td>
+                                                <td class="text-center">${c.quantidade}</td>
+                                                <c:if test="${c.ativo == true}">
+                                                    <td class="text-center">Ativo</td>
+                                                </c:if>
+                                                <c:if test="${c.ativo == false}">
+                                                    <td class="text-center">Inativo</td>
+                                                </c:if>
+                                                <td class="td-actions text-center">
+                                                    <c:url var="alterarProduto" value="/alterar-produto">
+                                                        <c:param name="id" value="${c.id}" />
+                                                    </c:url>
+                                                    <a href="${alterarProduto}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Produto"><i class="fas fa-pen"></i></a>
+                                                        <c:url var="detalhesProduto" value="/detalhes-produto">
+                                                            <c:param name="id" value="${c.id}" />
+                                                        </c:url>
+                                                    <a href="${detalhesProduto}" class="btn btn-warning" data-toggle="tooltip" data-placement="left" title="Detalhes Produto"><i class="material-icons">info</i></a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

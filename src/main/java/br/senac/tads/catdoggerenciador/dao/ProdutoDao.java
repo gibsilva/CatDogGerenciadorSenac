@@ -7,6 +7,8 @@ import java.util.List;
 
 import br.senac.tads.catdoggerenciador.dao.interfaces.IProdutoDao;
 import br.senac.tads.catdoggerenciador.entidades.Produto;
+import br.senac.tads.catdoggerenciador.entidades.enums.EPorteAnimal;
+import br.senac.tads.catdoggerenciador.entidades.enums.ETipoAnimal;
 
 public class ProdutoDao extends BaseDao implements IProdutoDao {
 
@@ -18,24 +20,26 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
         Produto produto = null;
 
         try {
-            this.stmt = conn.prepareStatement("SELECT `produto`.`Id`,\r\n"
-                    + "    `produto`.`Nome`,\r\n"
-                    + "    `produto`.`Descricao`,\r\n"
-                    + "    `produto`.`Especificacao`,\r\n"
-                    + "    `produto`.`PrecoCompra`,\r\n"
-                    + "    `produto`.`PrecoVenda`,\r\n"
-                    + "    `produto`.`Quantidade`,\r\n"
-                    + "    `produto`.`Ativo`,\r\n"
-                    + "    `produto`.`IdRaca`,\r\n"
-                    + "    `produto`.`IdCategoria`,\r\n"
-                    + "    `produto`.`IdFornecedor`\r\n"
-                    + "FROM `catdog`.`produto` where `produto`.`Id` = ?;");
+            this.stmt = conn.prepareStatement("SELECT `produto`.`Id`,\n"
+                    + "    `produto`.`Nome`,\n"
+                    + "    `produto`.`Descricao`,\n"
+                    + "    `produto`.`Especificacao`,\n"
+                    + "    `produto`.`PrecoCompra`,\n"
+                    + "    `produto`.`PrecoVenda`,\n"
+                    + "    `produto`.`Quantidade`,\n"
+                    + "    `produto`.`Ativo`,\n"
+                    + "    `produto`.`IdCategoria`,\n"
+                    + "    `produto`.`IdFornecedor`,\n"
+                    + "    `produto`.`PorteAnimal`,\n"
+                    + "    `produto`.`TipoAnimal`\n"
+                    + " FROM `catdog`.`produto` where id = ?;");
             stmt.setInt(1, id);
 
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                produto = new Produto(rs.getInt("Id"),
+                produto = new Produto(
+                        rs.getInt("Id"),
                         rs.getString("Nome"),
                         rs.getString("Descricao"),
                         rs.getString("Especificacao"),
@@ -44,7 +48,9 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
                         rs.getInt("Quantidade"),
                         rs.getInt("IdCategoria"),
                         rs.getInt("IdFornecedor"),
-                        rs.getInt("IdRaca"));
+                        EPorteAnimal.fromInt(rs.getInt("PorteAnimal")),
+                        ETipoAnimal.fromInt(rs.getInt("TipoAnimal"))
+                );
             }
 
             return produto;
@@ -63,23 +69,25 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
         List<Produto> produtos = new ArrayList<Produto>();
 
         try {
-            this.stmt = conn.prepareStatement("SELECT `produto`.`Id`,\r\n"
-                    + "    `produto`.`Nome`,\r\n"
-                    + "    `produto`.`Descricao`,\r\n"
-                    + "    `produto`.`Especificacao`,\r\n"
-                    + "    `produto`.`PrecoCompra`,\r\n"
-                    + "    `produto`.`PrecoVenda`,\r\n"
-                    + "    `produto`.`Quantidade`,\r\n"
-                    + "    `produto`.`Ativo`,\r\n"
-                    + "    `produto`.`IdRaca`,\r\n"
-                    + "    `produto`.`IdCategoria`,\r\n"
-                    + "    `produto`.`IdFornecedor`\r\n"
-                    + "FROM `catdog`.`produto`;");
+            this.stmt = conn.prepareStatement("SELECT `produto`.`Id`,\n"
+                    + "    `produto`.`Nome`,\n"
+                    + "    `produto`.`Descricao`,\n"
+                    + "    `produto`.`Especificacao`,\n"
+                    + "    `produto`.`PrecoCompra`,\n"
+                    + "    `produto`.`PrecoVenda`,\n"
+                    + "    `produto`.`Quantidade`,\n"
+                    + "    `produto`.`Ativo`,\n"
+                    + "    `produto`.`IdCategoria`,\n"
+                    + "    `produto`.`IdFornecedor`,\n"
+                    + "    `produto`.`PorteAnimal`,\n"
+                    + "    `produto`.`TipoAnimal`\n"
+                    + " FROM `catdog`.`produto`;");
 
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                produto = new Produto(rs.getInt("Id"),
+                produto = new Produto(
+                        rs.getInt("Id"),
                         rs.getString("Nome"),
                         rs.getString("Descricao"),
                         rs.getString("Especificacao"),
@@ -88,7 +96,9 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
                         rs.getInt("Quantidade"),
                         rs.getInt("IdCategoria"),
                         rs.getInt("IdFornecedor"),
-                        rs.getInt("IdRaca"));
+                        EPorteAnimal.fromInt(rs.getInt("PorteAnimal")),
+                        ETipoAnimal.fromInt(rs.getInt("TipoAnimal"))
+                );
 
                 produtos.add(produto);
             }
@@ -115,10 +125,11 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
                     + "PRECOVENDA, "
                     + "QUANTIDADE, "
                     + "ATIVO, "
-                    + "IDRACA, "
                     + "IDCATEGORIA, "
-                    + "IDFORNECEDOR) "
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?)");
+                    + "IDFORNECEDOR, "
+                    + "PORTEANIMAL, "
+                    + "TIPOANIMAL) "
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 
             this.stmt.setString(1, produto.getNome());
             this.stmt.setString(2, produto.getDescricao());
@@ -127,9 +138,10 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
             this.stmt.setDouble(5, produto.getPrecoVenda());
             this.stmt.setInt(6, produto.getQuantidade());
             this.stmt.setBoolean(7, produto.getAtivo());
-            this.stmt.setInt(8, produto.getIdRaca());
-            this.stmt.setInt(9, produto.getIdCategoria());
-            this.stmt.setInt(10, produto.getIdFornecedor());
+            this.stmt.setInt(8, produto.getIdCategoria());
+            this.stmt.setInt(9, produto.getIdFornecedor());
+            this.stmt.setInt(10, produto.getPorteAnimal().ordinal());
+            this.stmt.setInt(10, produto.getTipoAnimal().ordinal());
 
             this.stmt.executeUpdate();
 
@@ -144,41 +156,66 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
 
     @Override
     public void alterar(Produto produto) {
-    	this.conn = conexao.getConnection();
-    	
-    	try{
-    		this.stmt = this.conn.prepareStatement("update produto set "
-    				+ "nome = ?, "
-    				+ "descricao = ?, "
-    				+ "especificacao = ?, "
-    				+ "precocompra = ?, "
-    				+ "precovenda = ?, "
-    				+ "quantidade = ?, "
-    				+ "ativo = ?, "
-    				+ "idraca = ?, "
-    				+ "idcategoria = ?, "
-    				+ "idfornecedor = ? "
-    				+ "where id = ?");
-    		
+        this.conn = conexao.getConnection();
+
+        try {
+            this.stmt = this.conn.prepareStatement("update produto set "
+                    + "nome = ?, "
+                    + "descricao = ?, "
+                    + "especificacao = ?, "
+                    + "precocompra = ?, "
+                    + "precovenda = ?, "
+                    + "quantidade = ?, "
+                    + "ativo = ?, "
+                    + "idcategoria = ?, "
+                    + "idfornecedor = ?, "
+                    + "porteanimal = ?, "
+                    + "tipoanimal = ? "
+                    + "where id = ?");
+
             this.stmt.setString(1, produto.getNome());
             this.stmt.setString(2, produto.getDescricao());
             this.stmt.setString(3, produto.getEspecificacao());
             this.stmt.setDouble(4, produto.getPrecoCompra());
-            this.stmt.setDouble(4, produto.getPrecoVenda());
-            this.stmt.setInt(5, produto.getQuantidade());
-            this.stmt.setBoolean(6, produto.getAtivo());
-            this.stmt.setInt(7, produto.getIdRaca());
+            this.stmt.setDouble(5, produto.getPrecoVenda());
+            this.stmt.setInt(6, produto.getQuantidade());
+            this.stmt.setBoolean(7, produto.getAtivo());
             this.stmt.setInt(8, produto.getIdCategoria());
             this.stmt.setInt(9, produto.getIdFornecedor());
-            this.stmt.setInt(9, produto.getId());
-            
+            this.stmt.setInt(10, produto.getPorteAnimal().ordinal());
+            this.stmt.setInt(11, produto.getTipoAnimal().ordinal());
+            this.stmt.setInt(12, produto.getId());
+
             this.stmt.executeUpdate();
-    	}catch (SQLException e) {
+        } catch (SQLException e) {
             this.conexao.closeConnection(conn, stmt, rs);
         } finally {
             this.conexao.closeConnection(conn, stmt, rs);
         }
 
+    }
+
+    @Override
+    public int ultimoIdSalvo() {
+        this.conn = conexao.getConnection();
+        int id = 0;
+
+        try {
+            this.stmt = conn.prepareStatement("select id from produto "
+                    + "order by id desc");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+
+            return id;
+        } catch (SQLException e) {
+            this.conexao.closeConnection(conn, stmt, rs);
+            return 0;
+        } finally {
+            this.conexao.closeConnection(conn, stmt, rs);
+        }
     }
 
 }

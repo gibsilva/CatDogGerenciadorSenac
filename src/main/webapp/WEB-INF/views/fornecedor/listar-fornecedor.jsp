@@ -1,11 +1,12 @@
 <%-- 
-   Document   : lista-categoria
-   Created on : 22/09/2019, 10:40:47
-   Author     : Gi
+    Document   : lista-categoria
+    Created on : 22/09/2019, 10:40:47
+    Author     : Gi
 --%>
 
 <%@include file="../header.jsp" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <head>
     <title>Consulta de Fornecedores</title>
 </head>
@@ -17,7 +18,8 @@
             <div class="navbar-wrapper">
                 <a class="navbar-brand" href="#pablo">Consulta de Fornecedores</a>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon icon-bar"></span>
                 <span class="navbar-toggler-icon icon-bar"></span>
@@ -26,7 +28,8 @@
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">person</i>
                             <p class="d-lg-none d-md-block">
                                 Account
@@ -54,21 +57,12 @@
                             <p class="card-category">Lista de fornecedores cadastrados</p>
                         </div>
                         <div class="card-body">
-                            <span class="bmd-form-group col-md-8">
-                                <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Pesquisar">
-                                    <button type="submit" class="btn btn-info btn-round btn-just-icon">
-                                        <i class="material-icons">search</i>
-                                        <div class="ripple-container"></div>
-                                    </button>
-                                </div>
-                            </span>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><b>ID</b></th>
-                                            <th class="text-center"><b>Name</b></th>
+                                            <th class="text-center"><b>Nome</b></th>
                                             <th class="text-center"><b>Razão Social</b></th>
                                             <th class="text-center"><b>CNPJ</b></th>
                                             <th class="text-center"><b>CEP</b></th>
@@ -84,27 +78,36 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">Andrew Mike</td>
-                                            <td class="text-center">Develop</td>
-                                            <td class="text-center">2013</td>
-                                            <td class="text-center">Andrew Mike</td>
-                                            <td class="text-center">Develop</td>
-                                            <td class="text-center">2013</td>
-                                            <td class="text-center">Andrew Mike</td>
-                                            <td class="text-center">Develop</td>
-                                            <td class="text-center">2013</td>
-                                            <td class="text-center">Andrew Mike</td>
-                                            <td class="text-center">&euro; 99,225</td>
-                                            <td class="td-actions text-center">
-                                                <button type="button" rel="tooltip" class="btn  btn-link btn-success">
-                                                    <i class="fas fa-pen"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" class="btn  btn-lg btn-link btn-danger">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                            <c:forEach var="c" items="${fornecedores}">
+                                                <td class="text-center">${c.id}</td>
+                                                <td class="text-center">${c.nome}</td>
+                                                <td class="text-center">${c.razaoSocial}</td>
+                                                <td class="text-center">${c.documento}</td>
+                                                <td class="text-center">${c.cep}</td>
+                                                <td class="text-center">${c.logradouro}</td>
+                                                <td class="text-center">${c.numero}</td>
+                                                <td class="text-center">${c.complemento}</td>
+                                                <td class="text-center">${c.bairro}</td>
+                                                <td class="text-center">${c.cidade}</td>
+                                                <td class="text-center">${c.estado}</td>
+                                                <c:if test="${c.ativo == true}">
+                                                    <td class="text-center">Ativo</td>
+                                                </c:if>
+                                                <c:if test="${c.ativo == false}">
+                                                    <td class="text-center">Inativo</td>
+                                                </c:if>
+                                                <td class="td-actions text-center">
+                                                    <c:url var="alterarFornecedor" value="/alterar-fornecedor">
+                                                        <c:param name="id" value="${c.id}" />
+                                                    </c:url>
+                                                    <a href="${alterarFornecedor}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="fas fa-pen"></i></a>
+                                                        <c:url var="excluirFornecedor" value="/excluir-fornecedor">
+                                                            <c:param name="id" value="${c.id}" />
+                                                        </c:url>
+                                                    <a href="${excluirFornecedor}" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="material-icons">close</i></a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -116,11 +119,11 @@
     </div>
 
     <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">            
-        </div>            
+        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
+        </div>
     </div>
     <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 625px;">
-        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 316px;">            
-        </div>            
-    </div>       
+        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 316px;">
+        </div>
+    </div>
 </div>
