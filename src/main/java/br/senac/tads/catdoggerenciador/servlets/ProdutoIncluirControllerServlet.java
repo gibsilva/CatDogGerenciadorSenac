@@ -64,6 +64,7 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
         double precoCompra = Double.parseDouble(utils.formatarValor(request.getParameter("precoCompra")));
         double precoVenda = Double.parseDouble(utils.formatarValor(request.getParameter("precoVenda")));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
         int idCategoria = Integer.parseInt(request.getParameter("categoria"));
         int idFornecedor = Integer.parseInt(request.getParameter("fornecedor"));
         int porteAnimal = Integer.parseInt(request.getParameter("porteAnimal"));
@@ -102,7 +103,8 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
                 especificacao, 
                 precoCompra, 
                 precoVenda, 
-                quantidade, 
+                quantidade,
+                ativo,
                 idCategoria, 
                 idFornecedor, 
                 EPorteAnimal.fromInt(porteAnimal), 

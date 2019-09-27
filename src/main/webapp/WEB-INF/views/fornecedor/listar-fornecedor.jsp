@@ -100,11 +100,11 @@
                                                     <c:url var="alterarFornecedor" value="/alterar-fornecedor">
                                                         <c:param name="id" value="${c.id}" />
                                                     </c:url>
-                                                    <a href="${alterarFornecedor}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="fas fa-pen"></i></a>
+                                                    <a href="${alterarFornecedor}" class="btn btn-link btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="fas fa-pen"></i></a>
                                                         <c:url var="excluirFornecedor" value="/excluir-fornecedor">
                                                             <c:param name="id" value="${c.id}" />
                                                         </c:url>
-                                                    <a href="${excluirFornecedor}" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="material-icons">close</i></a>
+                                                    <a href="${excluirFornecedor}" class="btn btn-link btn-danger" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="material-icons">close</i></a>
                                                 </td>
                                             </tr>
                                         </c:forEach>

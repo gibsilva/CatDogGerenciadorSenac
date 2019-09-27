@@ -46,6 +46,7 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
                         rs.getDouble("PrecoCompra"),
                         rs.getDouble("PrecoVenda"),
                         rs.getInt("Quantidade"),
+                        rs.getBoolean("ativo"),
                         rs.getInt("IdCategoria"),
                         rs.getInt("IdFornecedor"),
                         EPorteAnimal.fromInt(rs.getInt("PorteAnimal")),
@@ -94,6 +95,7 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
                         rs.getDouble("PrecoCompra"),
                         rs.getDouble("PrecoVenda"),
                         rs.getInt("Quantidade"),
+                        rs.getBoolean("ativo"),
                         rs.getInt("IdCategoria"),
                         rs.getInt("IdFornecedor"),
                         EPorteAnimal.fromInt(rs.getInt("PorteAnimal")),
@@ -141,7 +143,7 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
             this.stmt.setInt(8, produto.getIdCategoria());
             this.stmt.setInt(9, produto.getIdFornecedor());
             this.stmt.setInt(10, produto.getPorteAnimal().ordinal());
-            this.stmt.setInt(10, produto.getTipoAnimal().ordinal());
+            this.stmt.setInt(11, produto.getTipoAnimal().ordinal());
 
             this.stmt.executeUpdate();
 

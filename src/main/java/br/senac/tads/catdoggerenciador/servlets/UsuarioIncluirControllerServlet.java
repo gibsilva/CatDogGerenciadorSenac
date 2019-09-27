@@ -5,6 +5,7 @@
  */
 package br.senac.tads.catdoggerenciador.servlets;
 
+import br.senac.tads.catdoggerenciador.services.UsuarioService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,9 +19,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UsuarioIncluirControllerServlet", urlPatterns = {"/incluir-usuario"})
 public class UsuarioIncluirControllerServlet extends HttpServlet {
+    
+     private final UsuarioService service;
+     
+     public UsuarioIncluirControllerServlet(){
+        this.service = new UsuarioService();
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/usuario/incluir-usuario.jsp").forward(request, response);
     }
+    
+    
 }

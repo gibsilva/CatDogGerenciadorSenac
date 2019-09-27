@@ -84,7 +84,8 @@
                                                     <c:url var="alterarCategoria" value="/alterar-categoria">
                                                         <c:param name="id" value="${c.id}" />
                                                     </c:url>
-                                                    <a href="${alterarCategoria}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Categoria"><i class="fas fa-pen"></i></a>
+                                                    <a href="${alterarCategoria}" class="btn btn-link btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Categoria">
+                                                        <i class="fas fa-pen"></i></a>
                                                     <button type="button" rel="tooltip" class="btn  btn-lg btn-link btn-danger">
                                                         <i class="fas fa-times"></i>
                                                     </button>

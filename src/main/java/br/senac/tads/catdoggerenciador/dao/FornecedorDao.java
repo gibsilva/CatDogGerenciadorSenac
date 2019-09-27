@@ -18,8 +18,8 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
         Fornecedor fornecedor = null;
 
         try {
-            this.stmt = conn.prepareStatement("select id, nome, razaosocial, documento, ativo,"
-                    + "cep, logradouro, cidade, bairro, estado, numero, complemento from fornecedor where id = ?");
+            this.stmt = conn.prepareStatement("select id, nome, razaosocial, documento,"
+                    + "cep, logradouro, numero, complemento, bairro, cidade, estado, ativo from fornecedor where id = ?");
             stmt.setInt(1, id);
 
             rs = stmt.executeQuery();
@@ -32,11 +32,12 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
                         rs.getString("documento"),
                         rs.getString("cep"),
                         rs.getString("logradouro"),
-                        rs.getString("cidade"),
-                        rs.getString("bairro"),
-                        rs.getString("estado"),
                         rs.getString("numero"),
-                        rs.getString("complemento"));
+                        rs.getString("complemento"),
+                        rs.getString("bairro"),
+                        rs.getString("cidade"),
+                        rs.getString("estado"),
+                        rs.getBoolean("ativo"));
             }
 
             return fornecedor;
@@ -55,8 +56,8 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
         List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 
         try {
-            this.stmt = conn.prepareStatement("select id, nome, razaosocial, documento, ativo,"
-                    + "cep, logradouro, numero, bairro, cidade, estado, complemento from fornecedor");
+            this.stmt = conn.prepareStatement("select id, nome, razaosocial, documento,"
+                    + "cep, logradouro, numero, complemento, bairro, cidade, estado, ativo from fornecedor");
 
             rs = stmt.executeQuery();
 
@@ -68,11 +69,12 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
                         rs.getString("documento"),
                         rs.getString("cep"),
                         rs.getString("logradouro"),
+                        rs.getString("numero"),
+                        rs.getString("complemento"),
                         rs.getString("cidade"),
                         rs.getString("bairro"),
                         rs.getString("estado"),
-                        rs.getString("numero"),
-                        rs.getString("complemento"));
+                        rs.getBoolean("ativo"));
 
                 fornecedores.add(fornecedor);
             }
@@ -91,20 +93,20 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
         this.conn = conexao.getConnection();
 
         try {
-            this.stmt = conn.prepareStatement("insert into fornecedor(nome, razaosocial, documento, ativo,"
-                    + "cep, logradouro, bairro, cidade, estado, numero, complemento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            this.stmt = conn.prepareStatement("insert into fornecedor(nome, razaosocial, documento,"
+                    + "cep, logradouro, numero, complemento, bairro, cidade, estado, ativo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             this.stmt.setString(1, fornecedor.getNome());
             this.stmt.setString(2, fornecedor.getRazaoSocial());
             this.stmt.setString(3, fornecedor.getDocumento());
-            this.stmt.setBoolean(4, fornecedor.getAtivo());
-            this.stmt.setString(5, fornecedor.getCep());
-            this.stmt.setString(6, fornecedor.getLogradouro());
-            this.stmt.setString(7, fornecedor.getBairro());
-            this.stmt.setString(8, fornecedor.getCidade());
-            this.stmt.setString(9, fornecedor.getEstado());
-            this.stmt.setString(10, fornecedor.getNumero());
-            this.stmt.setString(11, fornecedor.getComplemento());
+            this.stmt.setString(4, fornecedor.getCep());
+            this.stmt.setString(5, fornecedor.getLogradouro());
+            this.stmt.setString(6, fornecedor.getNumero());
+            this.stmt.setString(7, fornecedor.getComplemento());
+            this.stmt.setString(8, fornecedor.getBairro());
+            this.stmt.setString(9, fornecedor.getCidade());
+            this.stmt.setString(10, fornecedor.getEstado());
+            this.stmt.setBoolean(11, fornecedor.getAtivo());
 
             this.stmt.executeUpdate();
         } catch (SQLException e) {
@@ -122,20 +124,20 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
 
         try {
             this.stmt = conn.prepareStatement("update fornecedor set nome = ?, razaosocial = ?, documento = ?,"
-                    + "ativo = ?, cep = ?, logradouro = ?, bairro = ?, cidade = ?, "
-                    + "estado = ?, numero = ?, complemento = ? where id = ?");
+                    + "cep = ?, logradouro = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, "
+                    + "estado = ?, ativo = ? where id = ?");
 
             this.stmt.setString(1, fornecedor.getNome());
             this.stmt.setString(2, fornecedor.getRazaoSocial());
             this.stmt.setString(3, fornecedor.getDocumento());
-            this.stmt.setBoolean(4, fornecedor.getAtivo());
-            this.stmt.setString(5, fornecedor.getCep());
-            this.stmt.setString(6, fornecedor.getLogradouro());
-            this.stmt.setString(7, fornecedor.getBairro());
-            this.stmt.setString(8, fornecedor.getCidade());
-            this.stmt.setString(9, fornecedor.getEstado());
-            this.stmt.setString(10, fornecedor.getNumero());
-            this.stmt.setString(11, fornecedor.getComplemento());
+            this.stmt.setString(4, fornecedor.getCep());
+            this.stmt.setString(5, fornecedor.getLogradouro());
+            this.stmt.setString(6, fornecedor.getNumero());
+            this.stmt.setString(7, fornecedor.getComplemento());
+            this.stmt.setString(8, fornecedor.getBairro());
+            this.stmt.setString(9, fornecedor.getCidade());
+            this.stmt.setString(10, fornecedor.getEstado());
+            this.stmt.setBoolean(11, fornecedor.getAtivo());
             this.stmt.setInt(12, fornecedor.getId());
 
             this.stmt.executeUpdate();
@@ -153,26 +155,6 @@ public class FornecedorDao extends BaseDao implements IFornecedorDao {
 
         try {
             this.stmt = conn.prepareStatement("update fornecedor set ativo = ? where id = ?");
-
-            this.stmt.setBoolean(1, fornecedor.getAtivo());
-            this.stmt.setInt(2, fornecedor.getId());
-
-            this.stmt.executeUpdate();
-        } catch (SQLException e) {
-            this.conexao.closeConnection(conn, stmt, rs);
-            throw new RuntimeException(e.getMessage());
-        } finally {
-            this.conexao.closeConnection(conn, stmt, rs);
-        }
-    }
-
-    @Override
-    public void excluir(Fornecedor fornecedor) {
-        this.conn = conexao.getConnection();
-
-        try {
-            this.stmt = conn.prepareStatement("delete from fornecedor where id = ?");
-
             this.stmt.setInt(1, fornecedor.getId());
 
             this.stmt.executeUpdate();

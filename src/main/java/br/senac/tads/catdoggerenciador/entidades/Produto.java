@@ -25,7 +25,7 @@ public class Produto extends Entidade {
     private EPorteAnimal porteAnimal;
 
     public Produto(int id, String nome, String descricao, String especificacao, 
-            double precoCompra, double precoVenda, int quantidade, int idCategoria, 
+            double precoCompra, double precoVenda, int quantidade, boolean ativo, int idCategoria, 
             int idFornecedor, EPorteAnimal porteAnimal, ETipoAnimal tipoAnimal) {
         super(id);
         this.nome = nome;
@@ -34,7 +34,7 @@ public class Produto extends Entidade {
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
         this.quantidade = quantidade;
-        this.ativo = true;
+        this.ativo = ativo;
         this.idCategoria = idCategoria;
         this.idFornecedor = idFornecedor;
         this.porteAnimal = porteAnimal;

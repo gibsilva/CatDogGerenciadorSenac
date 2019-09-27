@@ -15,7 +15,7 @@
                 <a class="navbar-brand" href="#pablo">Alteração de Fornecedor</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-                aria-expanded="false" aria-label="Toggle navigation">
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon icon-bar"></span>
                 <span class="navbar-toggler-icon icon-bar"></span>
@@ -26,7 +26,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                           aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>
                             <p class="d-lg-none d-md-block">
                                 Account
@@ -60,14 +60,14 @@
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Nome do Fornecedor</label>
                                             <input type="text" class="form-control" id="fornecedor" name="fornecedor"
-                                                required value="${fornecedor.nome}">
+                                                   required value="${fornecedor.nome}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Razão Social</label>
                                             <input type="text" class="form-control" id="razaoSocial" name="razaoSocial"
-                                                required value="${fornecedor.razaoSocial}">
+                                                   required value="${fornecedor.razaoSocial}">
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">CNPJ</label>
-                                            <input type="text" class="form-control" id="cnpj" name="cnpj" required value="${fornecedor.documento}">
+                                            <input type="text" class="form-control" id="cnpj" name="cnpj" readonly value="${fornecedor.documento}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -90,7 +90,7 @@
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Logradouro</label>
                                             <input type="text" class="form-control" id="logradouro" name="logradouro"
-                                                readonly value="${fornecedor.logradouro}">
+                                                   readonly value="${fornecedor.logradouro}">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -126,10 +126,18 @@
                                             <input type="text" class="form-control" id="estado" name="estado" readonly value="${fornecedor.estado}">
                                         </div>
                                     </div>
+
+                                    <div class="form-group col-md-2">
+                                        <label class="bmd-label-floating" for="inputAtivo">Status</label>
+                                        <select id="ativo" name="ativo" class="custom-select" required>
+                                            <option value="true">Ativo</option>
+                                            <option value="false">Inativo</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-success pull-right">Salvar</button>
-                                <a href="listar-categoria" class="btn btn-danger pull-right">Cancelar</a>
+                                <a href="listar-fornecedor" class="btn btn-danger pull-right">Cancelar</a>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

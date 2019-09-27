@@ -5,7 +5,6 @@ public class Fornecedor extends Entidade {
     private String nome;
     private String razaoSocial;
     private String documento;
-    private boolean ativo;
     private String cep;
     private String logradouro;
     private String bairro;
@@ -13,22 +12,23 @@ public class Fornecedor extends Entidade {
     private String cidade;
     private String numero;
     private String complemento;
+    private boolean ativo;
 
-    public Fornecedor(int id, String nome, String razaoSocial, String documento, 
-            String cep, String logradouro, String bairro, 
-            String cidade, String estado, String numero, String complemento) {
+    public Fornecedor(int id, String nome, String razaoSocial, String documento,
+            String cep, String logradouro, String numero, String complemento, String bairro,
+            String cidade, String estado, boolean ativo) {
         super(id);
         this.nome = nome;
         this.razaoSocial = razaoSocial;
         this.documento = documento;
-        this.ativo = true;
         this.cep = cep;
         this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
         this.cidade = cidade;
         this.estado = estado;
         this.bairro = bairro;
-        this.numero = numero;
-        this.complemento = complemento;
+        this.ativo = ativo;
     }
 
     public String getNome() {
@@ -53,14 +53,6 @@ public class Fornecedor extends Entidade {
 
     public void setDocumento(String documento) {
         this.documento = documento;
-    }
-
-    public boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public String getCep() {
@@ -153,5 +145,13 @@ public class Fornecedor extends Entidade {
      */
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

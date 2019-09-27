@@ -108,7 +108,6 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-
                                 </div>
 
                                 <div class="row">
@@ -126,8 +125,6 @@
                                                       id="especificacao" name="especificacao" required></textarea>
                                         </div>
                                     </div>
-
-
                                 </div>
 
                                 <div class="row">
@@ -163,16 +160,15 @@
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Status</label>
                                         <select id="inputState" class="form-control" id="status" name="status" required>
-                                            <option selected>Selecione</option>
-                                            <option>Ativo</option>
-                                            <option>Inativo</option>
+                                            <option selected value="true">Ativo</option>
+                                            <option value="false">Inativo</option>
                                         </select>
                                     </div>
                                 </div>
                                 <br>
                                 <br>
                                 <button type="submit" class="btn btn-success pull-right">Salvar</button>
-                                <button type="" class="btn btn-danger pull-right">Cancelar</button>
+                                <a href="dashboard" type="" class="btn btn-danger pull-right">Cancelar</a>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

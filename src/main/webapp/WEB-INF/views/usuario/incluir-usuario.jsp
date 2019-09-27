@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JSP Page</title>
+    <title>Adicionar Usuário</title>
 </head>
 
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Novo Usuario</a>
+                <a class="navbar-brand" href="#pablo">Novo Usuário</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -63,17 +63,18 @@
                                             <input type="text" class="form-control" id="nome" name="nome" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">CPF</label>
                                             <input type="text" class="form-control" id="cpf" name="cpf" required>
                                         </div>
                                     </div>
-
+                                </div>
+                                <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Data de Nascimento</label>
-                                            <input type="date" class="form-control" id="dataNasc" name="dataNasc">
+                                            <label class="bmd-label-floating">E-mail</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-5">
@@ -83,47 +84,27 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">E-mail</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
-                                        </div>
-                                    </div>
-
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Senha</label>
                                             <input type="password" class="form-control" id="senha" name="senha" required>
                                         </div>
                                     </div>
-
-
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Status</label>
-                                        <select id="stauts" name="status" class="form-control" required>
-                                            <option selected>Selecione</option>
-                                            <option>Ativo</option>
-                                            <option>Inativo</option>
-                                        </select>
-                                    </div>
-
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Permissão</label>
                                         <select id="permissao" name="permissao" class="form-control" required>
                                             <option selected>Selecione</option>
-                                            <option>Admin</option>
+                                            <option>Administrador</option>
                                             <option>Auxiliar</option>
                                         </select>
                                     </div>
-
                                 </div>
                                 <br>
                                 <br>
                                 <button type="submit" class="btn btn-success pull-right" id="salvarUser" name="salvarUser">Salvar</button>
-                                <button type="" class="btn btn-danger pull-right">Cancelar</button>
+                                <a href="dashboard" type="" class="btn btn-danger pull-right">Cancelar</a>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

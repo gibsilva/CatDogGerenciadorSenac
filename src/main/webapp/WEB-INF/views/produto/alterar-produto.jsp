@@ -171,7 +171,7 @@
                                 <br>
                                 <br>
                                 <button type="submit" class="btn btn-success pull-right">Salvar</button>
-                                <button type="" class="btn btn-danger pull-right">Cancelar</button>
+                                <a href="listar-produto" type="" class="btn btn-danger pull-right">Cancelar</a>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
