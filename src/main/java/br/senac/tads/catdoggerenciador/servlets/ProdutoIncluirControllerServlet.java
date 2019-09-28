@@ -36,7 +36,7 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
     private final FornecedorService fornecedorService;
 
     public ProdutoIncluirControllerServlet() {
-        this.UPLOAD_DIRECTORY = "C:/uploads";
+        this.UPLOAD_DIRECTORY = "C:/uploads/";
         this.produtoService = new ProdutoService();
         this.categoriaService = new CategoriaService();
         this.fornecedorService = new FornecedorService();

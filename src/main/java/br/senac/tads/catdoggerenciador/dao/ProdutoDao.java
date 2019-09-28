@@ -219,5 +219,4 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
             this.conexao.closeConnection(conn, stmt, rs);
         }
     }
-
 }
