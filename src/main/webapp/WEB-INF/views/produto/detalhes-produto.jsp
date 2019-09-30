@@ -57,8 +57,11 @@
                                 <div class="carousel-inner">
                                     <c:forEach var="c" items="${produto.imagens}">
                                         <div class="carousel-item active">
-                                            <img class="d-block carousel-picture "
-                                                 src="${c.caminho}"
+                                            <img height="240" width="160" class="d-block carousel-picture "
+                                                 <c:url var="imagem" value="/imagem">
+                                                     <c:param name="idImagem" value="${c.id}" />
+                                                 </c:url>
+                                                 src='${imagem}'
                                                  alt="${c.nome}">
                                         </div>
                                     </c:forEach>
@@ -183,5 +186,7 @@
     $(document).ready(function () {
         document.getElementById('descricao').value = '${produto.descricao}';
         document.getElementById('especificacao').value = '${produto.especificacao}';
+        console.log('${produto.imagens[0].caminho}');
+        console.log($('img').attr('src'));
     });
 </script>

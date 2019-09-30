@@ -159,7 +159,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Status</label>
-                                        <select id="inputState" class="form-control" id="status" name="status" required>
+                                        <select id="inputState" class="form-control" id="ativo" name="ativo" required>
                                             <option selected value="true">Ativo</option>
                                             <option value="false">Inativo</option>
                                         </select>

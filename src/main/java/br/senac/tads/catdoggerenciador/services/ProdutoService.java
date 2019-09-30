@@ -97,8 +97,7 @@ public class ProdutoService {
         int idProduto = obterUltimoIdSalvo();
         for (Imagem img : p.getImagens()) {
             img.setIdProduto(idProduto);
-            ImagemDao imagemDao = new ImagemDao();
-            imagemDao.salvar(img);
+            this.imagemDao.salvar(img);
         }
     }
 }

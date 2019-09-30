@@ -24,6 +24,10 @@ public class ImagemService {
         return this.imagemDao.obterTodos();
     }
     
+    public Imagem obterPorId(int id){
+        return this.imagemDao.obterPorId(id);
+    }
+    
     public void salvar(Imagem imagem){
         this.imagemDao.salvar(imagem);
     }

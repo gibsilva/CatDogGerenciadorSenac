@@ -163,7 +163,7 @@ public class ImagemDao extends BaseDao implements IImagemDao {
     public List<Imagem> obterPorIdProduto(int id) {
         this.conn = conexao.getConnection();
         Imagem img = null;
-        List<Imagem> imagens = new ArrayList<Imagem>();
+        List<Imagem> imagens = new ArrayList<>();
 
         try {
             this.stmt = conn.prepareStatement("select id, idproduto, nome, caminho, tipo from imagem where idproduto = ?");

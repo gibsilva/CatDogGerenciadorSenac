@@ -142,8 +142,8 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
             this.stmt.setBoolean(7, produto.getAtivo());
             this.stmt.setInt(8, produto.getIdCategoria());
             this.stmt.setInt(9, produto.getIdFornecedor());
-            this.stmt.setInt(10, produto.getPorteAnimal().ordinal());
-            this.stmt.setInt(11, produto.getTipoAnimal().ordinal());
+            this.stmt.setInt(10, produto.getPorteAnimal().getOpcao());
+            this.stmt.setInt(11, produto.getTipoAnimal().getOpcao());
 
             this.stmt.executeUpdate();
 
@@ -204,7 +204,7 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
 
         try {
             this.stmt = conn.prepareStatement("select id from produto "
-                    + "order by id desc");
+                    + "order by id desc limit 1");
             rs = stmt.executeQuery();
 
             while (rs.next()) {

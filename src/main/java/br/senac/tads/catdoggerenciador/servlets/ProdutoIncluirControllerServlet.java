@@ -22,21 +22,17 @@ import br.senac.tads.catdoggerenciador.helpers.Utils;
 import br.senac.tads.catdoggerenciador.services.CategoriaService;
 import br.senac.tads.catdoggerenciador.services.FornecedorService;
 import br.senac.tads.catdoggerenciador.services.ProdutoService;
-import br.senac.tads.catdoggerenciador.services.RacaService;
 import java.io.FileOutputStream;
 
 @WebServlet(name = "ProdutoIncluirServlet", urlPatterns = {"/incluir-produto"})
 @MultipartConfig
 public class ProdutoIncluirControllerServlet extends HttpServlet {
 
-    private final String UPLOAD_DIRECTORY;
-
     private final ProdutoService produtoService;
     private final CategoriaService categoriaService;
     private final FornecedorService fornecedorService;
 
     public ProdutoIncluirControllerServlet() {
-        this.UPLOAD_DIRECTORY = "C:/uploads/";
         this.produtoService = new ProdutoService();
         this.categoriaService = new CategoriaService();
         this.fornecedorService = new FornecedorService();
@@ -87,7 +83,7 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
                 byte[] b = new byte[i];
                 is.read(b);
                 fileName = getFileName(part);
-                caminho = UPLOAD_DIRECTORY + fileName;
+                caminho = getCaminho(getServletContext().getRealPath("/imagens"), fileName);
                 FileOutputStream os = new FileOutputStream(caminho);
                 os.write(b);
             }
@@ -138,4 +134,8 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
         return null;
     }
 
+    private String getCaminho(String caminho, String arquivo){
+        caminho = caminho.substring(0, caminho.indexOf("target"));
+        return caminho + "\\imagens\\" + arquivo;
+    }
 }
