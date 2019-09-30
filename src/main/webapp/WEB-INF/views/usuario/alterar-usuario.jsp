@@ -87,7 +87,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Permissão</label>
-                                        <select id="persmissao" name="permissao" class="form-control" value="${permissao}">
+                                        <select id="persmissao" name="permissao" class="form-control" value="${usuario.permissao}">
                                             <option selected>Selecione</option>
                                             <option>Administrador</option>
                                             <option>Auxiliar</option>
@@ -96,7 +96,7 @@
 
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputAtivo">Status</label>
-                                        <select id="ativo" name="ativo" class="custom-select" value="${ativo}" required>
+                                        <select id="ativo" name="ativo" class="custom-select" value="${usuario.ativo}" required>
                                             <option value="true">Ativo</option>
                                             <option value="false">Inativo</option>
                                         </select>

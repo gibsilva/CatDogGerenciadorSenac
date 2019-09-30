@@ -92,7 +92,7 @@
 
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Porte de Animal</label>
-                                        <select id="inputState" class="form-control" id="porteAnimal" name="porteAnimal" required>
+                                        <select id="inputState" class="form-control" id="porteAnimal" name="porteAnimal">
                                             <option selected>Selecione</option>
                                             <c:forEach var="c" items="${porteAnimal}">
                                                 <option value="${c.ordinal()}">${c.toString()}</option>

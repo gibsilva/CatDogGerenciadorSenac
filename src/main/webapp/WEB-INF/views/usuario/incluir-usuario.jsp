@@ -98,8 +98,8 @@
                                 </div>
                                 <br>
                                 <br>
-                                <button type="submit" class="btn btn-success pull-right" id="salvarUser" name="salvarUser">Salvar</button>
-                                <a href="dashboard" type="" class="btn btn-danger pull-right">Cancelar</a>
+                                <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                                <a href="dashboard" class="btn btn-danger pull-right">Cancelar</a>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
