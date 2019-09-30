@@ -17,36 +17,28 @@ public class Usuario extends Entidade {
     private String nome;
     private String cpf;
     private String email;
-    private String login;
     private String senha;
-    private boolean ativo;
     private String permissao;
+    private boolean ativo;
 
-    public Usuario(int id, String nome, String cpf, String email, String login,
-            String senha, boolean ativo, String permissao) {
+    public Usuario(int id, String nome, String cpf, String email,
+            String senha, String permissao, boolean ativo) {
         super(id);
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        this.login = login;
-        if (senha.length() == 60) {
-            this.senha = senha;
-        } else {
-            setSenhaEncriptada(senha);
-        }
-        this.ativo = ativo;
+        this.senha = senha;
         this.permissao = permissao;
+        this.ativo = ativo;
     }
 
-    public Usuario(int id, String nome, String cpf, String email, String login,
-            boolean ativo, String permissao) {
+    public Usuario(int id, String nome, String cpf, String email, String permissao, boolean ativo) {
         super(id);
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        this.login = login;
-        this.ativo = ativo;
         this.permissao = permissao;
+        this.ativo = ativo;
     }
 
     /**
@@ -89,20 +81,6 @@ public class Usuario extends Entidade {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    /**
-     * @return the login
-     */
-    public String getLogin() {
-        return login;
-    }
-
-    /**
-     * @param login the login to set
-     */
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     /**

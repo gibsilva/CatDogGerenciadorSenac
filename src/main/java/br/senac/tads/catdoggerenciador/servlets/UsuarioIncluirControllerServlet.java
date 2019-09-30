@@ -7,6 +7,7 @@ package br.senac.tads.catdoggerenciador.servlets;
 
 import br.senac.tads.catdoggerenciador.entidades.Notificacao;
 import br.senac.tads.catdoggerenciador.entidades.Usuario;
+import br.senac.tads.catdoggerenciador.helpers.Utils;
 import br.senac.tads.catdoggerenciador.services.UsuarioService;
 import java.io.IOException;
 import java.util.List;
@@ -38,15 +39,16 @@ public class UsuarioIncluirControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Utils utils = new Utils();
+        
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
-        String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         String permissao = request.getParameter("permissao");
         
 
-        Usuario usuario = new Usuario(0, nome, cpf, email, login, senha, true, permissao);
+        Usuario usuario = new Usuario(0, nome, cpf, email, senha, permissao, true);
 
         try {
             List<Notificacao> notificacoes = service.incluirOuAlterar(usuario);

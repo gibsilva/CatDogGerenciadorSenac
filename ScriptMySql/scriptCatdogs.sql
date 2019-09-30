@@ -74,7 +74,6 @@ CREATE TABLE usuario (
   Cpf varchar(11) NOT NULL,
   Email varchar(80) NOT NULL,
   DataNasc datetime NOT NULL,
-  Login varchar(20) NOT NULL,
   Permissao int(11) NOT NULL,
   Senha varchar(16) NOT NULL,
   DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

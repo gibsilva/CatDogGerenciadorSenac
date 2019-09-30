@@ -5,6 +5,7 @@
 --%>
 <%@include file="../header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -55,7 +56,7 @@
                             <p class="card-category">Adicione um novo usuário</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="incluir-usuario" method="post">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
@@ -77,21 +78,15 @@
                                             <input type="email" class="form-control" id="email" name="email" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Login</label>
-                                            <input type="text" class="form-control" id="login" name="login" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Senha</label>
                                             <input type="password" class="form-control" id="senha" name="senha" required>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="row">
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputState">Permissão</label>
                                         <select id="permissao" name="permissao" class="form-control" required>

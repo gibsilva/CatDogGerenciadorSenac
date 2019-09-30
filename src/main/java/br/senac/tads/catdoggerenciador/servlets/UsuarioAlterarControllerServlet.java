@@ -43,12 +43,11 @@ public class UsuarioAlterarControllerServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
-        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
+        String senha = request.getParameter("senha"); 
         String permissao = request.getParameter("permissao");
+        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
 
-        Usuario usuario = new Usuario(0, nome, cpf, email, login, senha, true, permissao);
+        Usuario usuario = new Usuario(0, nome, cpf, email, senha, permissao, true);
 
         try {
             List<Notificacao> notificacoes = service.incluirOuAlterar(usuario);

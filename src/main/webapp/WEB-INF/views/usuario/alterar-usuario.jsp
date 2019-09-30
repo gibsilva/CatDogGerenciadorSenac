@@ -4,12 +4,12 @@
     Author     : Gi
 --%>
 <%@include file="../header.jsp" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>AlteraÃ§Ã£o de UsuÃ¡rio</title>
+    <title>Alteração de Usuário</title>
 </head>
 
 
@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">AlteraÃ§Ã£o de UsuÃ¡rio</a>
+                <a class="navbar-brand" href="#pablo">Alteração de Usuário</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -53,22 +53,24 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
-                            <h4 class="card-title">Alterar UsuÃ¡rio</h4>
-                            <p class="card-category">Altere os dados dos usuÃ¡rios</p>
+                            <h4 class="card-title">Alterar Usuário</h4>
+                            <p class="card-category">Altere os dados dos usuários</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="alterar-usuario" method="post">
+                                <input type="hidden" value="${usuario.id}" name="id">
                                 <div class="row">
+
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Nome</label>
-                                            <input type="text" class="form-control" id="nome" name="nome">
+                                            <input type="text" class="form-control" id="nome" name="nome" value="${usuario.nome}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">CPF</label>
-                                            <input type="text" class="form-control" id="cpf" name="cpf" readonly>
+                                            <input type="text" class="form-control" id="cpf" name="cpf" value="${usuario.cpf}" readonly>
                                         </div>
                                     </div>
 
@@ -77,43 +79,33 @@
                                     <div class="col-md-5">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">E-mail</label>
-                                            <input type="email" class="form-control" id="email" name="email">
+                                            <input type="email" class="form-control" id="email" name="email" value="${usuario.email}">
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-5">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="bmd-label-floating">Login</label>
-                                        <input type="text" class="form-control" id="login" name="login">
-                                    </div>
                                 </div>
-                                </div>
-                                
+
                                 <div class="row">
                                     <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Status</label>
-                                        <select id="status" name="status" class="form-control">
+                                        <label class="bmd-label-floating" for="inputState">Permissão</label>
+                                        <select id="persmissao" name="permissao" class="form-control" value="${permissao}">
                                             <option selected>Selecione</option>
-                                            <option>Ativo</option>
-                                            <option>Inativo</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">PermissÃ£o</label>
-                                        <select id="persmissao" name="permissao" class="form-control">
-                                            <option selected>Selecione</option>
-                                            <option>Admin</option>
+                                            <option>Administrador</option>
                                             <option>Auxiliar</option>
                                         </select>
                                     </div>
 
-                                </div>
-                                <br>
-                                <br>
-                                <button type="submit" class="btn btn-success pull-right" id="alterarUser" name="alterarUser">Alterar</button>
-                                <a href="listar-usuario" type="" class="btn btn-danger pull-right">Cancelar</a>
-                                <div class="clearfix"></div>
+                                    <div class="form-group col-md-2">
+                                        <label class="bmd-label-floating" for="inputAtivo">Status</label>
+                                        <select id="ativo" name="ativo" class="custom-select" value="${ativo}" required>
+                                            <option value="true">Ativo</option>
+                                            <option value="false">Inativo</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <button type="submit" class="btn btn-success pull-right" id="alterarUser" name="alterarUser">Alterar</button>
+                                    <a href="listar-usuario" type="" class="btn btn-danger pull-right">Cancelar</a>
+                                    <div class="clearfix"></div>
                             </form>
                         </div>
                     </div>

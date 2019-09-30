@@ -129,7 +129,7 @@
 
                                     <div class="form-group col-md-2">
                                         <label class="bmd-label-floating" for="inputAtivo">Status</label>
-                                        <select id="ativo" name="ativo" class="custom-select" required>
+                                        <select id="ativo" name="ativo" class="custom-select" value="${ativo}" required>
                                             <option value="true">Ativo</option>
                                             <option value="false">Inativo</option>
                                         </select>
