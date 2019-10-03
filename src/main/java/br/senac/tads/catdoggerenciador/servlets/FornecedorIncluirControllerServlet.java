@@ -48,9 +48,8 @@ public class FornecedorIncluirControllerServlet extends HttpServlet {
         String bairro = request.getParameter("bairro");     
         String cidade = request.getParameter("cidade");
         String estado = request.getParameter("estado");
-        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
         
-        Fornecedor fornecedor = new Fornecedor(0, nome, razaoSocial, cnpj, cep, logradouro, numero, complemento, bairro, cidade, estado, ativo);
+        Fornecedor fornecedor = new Fornecedor(0, nome, razaoSocial, cnpj, cep, logradouro, numero, complemento, bairro, cidade, estado, true);
              
         try{
             List<Notificacao> notificacoes = service.incluirOuAlterar(fornecedor);

@@ -158,6 +158,10 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        document.getElementById('ativo').value = '${fornecedor.ativo}';
+    });
+    
     //estamos usando uma api gratuita para a consulta de CEPs
     $("#cep").focusout(function () {
         if ($("#cep").val() === '00000-000' || $("#cep").val() === '11111-111') {
@@ -204,4 +208,6 @@
         $("#uf").val('');
         $("#cep").focus();
     }
+    
+    
 </script>

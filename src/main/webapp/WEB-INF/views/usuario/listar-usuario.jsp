@@ -59,7 +59,7 @@
                             <span class="bmd-form-group col-md-8">
                                 <div class="input-group no-border">
                                     <input type="text" value="" class="form-control" placeholder="Pesquisar">
-                                    <button type="submit" class="btn btn-info btn-round btn-just-icon">
+                                    <button type="submit" class="btn btn-info btn-round btn-just-icon" data-toggle="tooltip" data-placement="left" title="Pesquisar Usuário">
                                         <i class="material-icons">search</i>
                                         <div class="ripple-container"></div>
                                     </button>
@@ -98,7 +98,7 @@
                                                         <c:url var="excluirUsuario" value="/excluir-usuario">
                                                             <c:param name="id" value="${c.id}" />
                                                         </c:url>
-                                                    <a href="${excluirUsuario}" class="btn btn-link btn-danger" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="material-icons">close</i></a>
+                                                    <a href="${excluirUsuario}" class="btn btn-link btn-danger" data-toggle="tooltip" data-placement="left" title="Excluir Usuário"><i class="material-icons">close</i></a>
                                                 </td>
                                             </c:forEach>
                                         </tr> 

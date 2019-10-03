@@ -121,13 +121,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputAtivo">Status</label>
-                                        <select id="ativo" name="ativo" class="custom-select" required>
-                                            <option selected value="true">Ativo</option>
-                                            <option value="false">Inativo</option>
-                                        </select>
-                                    </div>
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-success pull-right">Salvar</button>
