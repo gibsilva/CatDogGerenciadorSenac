@@ -95,7 +95,7 @@
                                                         <c:param name="id" value="${c.id}" />
                                                     </c:url>
                                                     <a href="${alterarUsuario}" class="btn btn-link btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Usuário"><i class="fas fa-pen"></i></a>
-                                                        <c:url var="excluirFornecedor" value="/excluir-fornecedor">
+                                                        <c:url var="excluirUsuario" value="/excluir-usuario">
                                                             <c:param name="id" value="${c.id}" />
                                                         </c:url>
                                                     <a href="${excluirUsuario}" class="btn btn-link btn-danger" data-toggle="tooltip" data-placement="left" title="Alterar Cliente"><i class="material-icons">close</i></a>

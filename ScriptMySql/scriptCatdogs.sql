@@ -21,7 +21,7 @@ CREATE TABLE fornecedor (
   CREATE TABLE categoria (
   Id int NOT NULL AUTO_INCREMENT,
   Nome varchar(50) NOT NULL,
-  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  DataHoraCriacao datetime NOT NULL DEFAULT now(),
   PRIMARY KEY (Id)
   );
   
@@ -44,7 +44,7 @@ CREATE TABLE fornecedor (
   IdCategoria int(11) NOT NULL,
   IdFornecedor int(11) NOT NULL,
   TipoAnimal int(11) DEFAULT NULL,
-  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  DataHoraCriacao datetime NOT NULL DEFAULT now(),
   PorteAnimal int(11) NOT NULL,
   PRIMARY KEY (Id),
   KEY IX_Produto_IdCategoria (IdCategoria),
@@ -73,10 +73,10 @@ CREATE TABLE usuario (
   Nome varchar(80) NOT NULL,
   Cpf varchar(11) NOT NULL,
   Email varchar(80) NOT NULL,
-  DataNasc datetime NOT NULL,
+  DataNasc datetime,
   Permissao int(11) NOT NULL,
-  Senha varchar(16) NOT NULL,
-  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  Senha varchar(60) NOT NULL,
+  DataHoraCriacao datetime NOT NULL DEFAULT now(),
   PRIMARY KEY (Id),
   UNIQUE KEY Cpf (Cpf),
   UNIQUE KEY Email (Email)
@@ -92,7 +92,7 @@ CREATE TABLE cliente (
   Permissao int(11) NOT NULL,
   Senha varchar(16) NOT NULL,
   Cep varchar(8) DEFAULT NULL,
-  DataHoraCriacao datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  DataHoraCriacao datetime NOT NULL DEFAULT now(),
   PRIMARY KEY (Id),
   UNIQUE KEY Cpf (Cpf),
   UNIQUE KEY Email (Email)

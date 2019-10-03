@@ -91,8 +91,9 @@
                                         <label class="bmd-label-floating" for="inputState">Permissão</label>
                                         <select id="permissao" name="permissao" class="form-control" required>
                                             <option selected>Selecione</option>
-                                            <option>Administrador</option>
-                                            <option>Auxiliar</option>
+                                            <c:forEach var="c" items="${permissoes}">
+                                                <option value="${c.getOpcao()}">${c.toString()}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>

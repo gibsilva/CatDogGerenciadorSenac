@@ -23,24 +23,26 @@ public class UsuarioService {
         this.usuarioDao = new UsuarioDao();
         this.notificacao = new Notificacao();
     }
-    public List<Usuario> obterTodos(){
+
+    public List<Usuario> obterTodos() {
         return this.usuarioDao.obterTodos();
     }
-    
-    public List<Notificacao> incluirOuAlterar(Usuario usuario){
-        if(usuario.getId() == 0)
+
+    public List<Notificacao> incluirOuAlterar(Usuario usuario) {
+        if (usuario.getId() == 0) {
             this.usuarioDao.salvar(usuario);
-        else
+        } else {
             this.usuarioDao.alterar(usuario);
-        
+        }
+
         return notificacao.getNotificacaoes();
     }
-    
-    public Usuario obterPorId(int id){
+
+    public Usuario obterPorId(int id) {
         return this.usuarioDao.obterPorId(id);
     }
 
-    public void limparNotificacoes(){
+    public void limparNotificacoes() {
         this.notificacao.limparNotificacoes();
     }
 }

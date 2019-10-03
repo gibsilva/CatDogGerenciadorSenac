@@ -31,6 +31,7 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
     private final ProdutoService produtoService;
     private final CategoriaService categoriaService;
     private final FornecedorService fornecedorService;
+	private FileOutputStream os;
 
     public ProdutoIncluirControllerServlet() {
         this.produtoService = new ProdutoService();
@@ -84,7 +85,7 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
                 is.read(b);
                 fileName = getFileName(part);
                 caminho = getCaminho(getServletContext().getRealPath("/imagens"), fileName);
-                FileOutputStream os = new FileOutputStream(caminho);
+                os = new FileOutputStream(caminho);
                 os.write(b);
             }
             
@@ -118,9 +119,11 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/views/produto/incluir-produto.jsp").forward(request, response);
             }
         } catch (Exception e) {
+        	os.close();
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         } finally {
             this.produtoService.limparNotificacoes();
+            os.close();
         }
     }
 

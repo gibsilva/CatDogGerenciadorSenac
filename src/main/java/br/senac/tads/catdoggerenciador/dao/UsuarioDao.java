@@ -12,6 +12,7 @@ import java.util.List;
 
 import br.senac.tads.catdoggerenciador.dao.interfaces.IUsuario;
 import br.senac.tads.catdoggerenciador.entidades.Usuario;
+import br.senac.tads.catdoggerenciador.entidades.enums.ETipoPermissao;
 
 /**
  *
@@ -27,7 +28,7 @@ public class UsuarioDao extends BaseDao implements IUsuario {
         Usuario usuario = null;
 
         try {
-            this.stmt = conn.prepareStatement("select id, nome, cpf, email,"
+            this.stmt = conn.prepareStatement("select id, nome, cpf, senha, email,"
                     + "permissao, ativo from usuario where id = ?");
 
             stmt.setInt(1, id);
@@ -35,12 +36,12 @@ public class UsuarioDao extends BaseDao implements IUsuario {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 usuario = new Usuario(
-                        rs.getInt("IdUsuario"),
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("senha"),
-                        rs.getString("permissao"),
+                        ETipoPermissao.fromInt(rs.getInt("permissao")),
                         rs.getBoolean("ativo")
                 );
             }
@@ -71,7 +72,7 @@ public class UsuarioDao extends BaseDao implements IUsuario {
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("senha"),
-                        rs.getString("permissao"),
+                        ETipoPermissao.fromInt(rs.getInt("permissao")),
                         rs.getBoolean("ativo")
                 );
             }
@@ -100,7 +101,7 @@ public class UsuarioDao extends BaseDao implements IUsuario {
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("senha"),
-                        rs.getString("permissao"),
+                        ETipoPermissao.fromInt(rs.getInt("permissao")),
                         rs.getBoolean("ativo")
                 );
 
@@ -121,18 +122,18 @@ public class UsuarioDao extends BaseDao implements IUsuario {
 
         try {
             this.stmt = conn.prepareStatement("select id, nome, cpf, email,"
-                    + " senha, permissao, ativo from usuario where id = ?");
+                    + " senha, permissao, ativo from usuario");
 
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 usuario = new Usuario(
-                        rs.getInt("IdUsuario"),
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("senha"),
-                        rs.getString("permissao"),
+                        ETipoPermissao.fromInt(rs.getInt("permissao")),
                         rs.getBoolean("ativo")
                 );
 
@@ -154,13 +155,14 @@ public class UsuarioDao extends BaseDao implements IUsuario {
 
         try {
             this.stmt = conn.prepareStatement("insert into usuario(nome, cpf, email,"
-                    + " senha, permissao) values (?, ?, ?, ?, ?)");
+                    + " senha, permissao, ativo) values (?, ?, ?, ?, ?, ?)");
 
             this.stmt.setString(1, usuario.getNome());
             this.stmt.setString(2, usuario.getCpf());
             this.stmt.setString(3, usuario.getEmail());
             this.stmt.setString(4, usuario.getSenha());
-            this.stmt.setString(5, usuario.getPermissao());
+            this.stmt.setInt(5, usuario.getPermissao().getOpcao());
+            this.stmt.setBoolean(6, usuario.getAtivo());
 
             this.stmt.executeUpdate();
         } catch (SQLException e) {
@@ -178,14 +180,14 @@ public class UsuarioDao extends BaseDao implements IUsuario {
 
         try {
             this.stmt = conn.prepareStatement("update usuario set nome = ?, cpf = ?, email = ?,"
-                    + " senha = ?, permissao = ? , ativo = ? where id = ?");
+                    + "permissao = ? , ativo = ? where id = ?");
 
             this.stmt.setString(1, usuario.getNome());
             this.stmt.setString(2, usuario.getCpf());
             this.stmt.setString(3, usuario.getEmail());
-            this.stmt.setString(4, usuario.getSenha());
-            this.stmt.setString(6, usuario.getPermissao());
+            this.stmt.setInt(4, usuario.getPermissao().getOpcao());
             this.stmt.setBoolean(5, usuario.getAtivo());
+            this.stmt.setInt(6, usuario.getId());
 
             this.stmt.executeUpdate();
         } catch (SQLException e) {
@@ -233,7 +235,7 @@ public class UsuarioDao extends BaseDao implements IUsuario {
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("senha"),
-                         rs.getString("permissao"),
+                        ETipoPermissao.fromInt(rs.getInt("permissao")),
                         rs.getBoolean("ativo")
                 );
             }

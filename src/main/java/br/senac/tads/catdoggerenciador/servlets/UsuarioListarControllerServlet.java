@@ -28,6 +28,7 @@ public class UsuarioListarControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("usuarios", service.obterTodos());
         request.getRequestDispatcher("/WEB-INF/views/usuario/listar-usuario.jsp").forward(request, response);
     }
 }

@@ -5,8 +5,9 @@
  */
 package br.senac.tads.catdoggerenciador.entidades;
 
-import java.util.Date;
 import org.mindrot.jbcrypt.BCrypt;
+
+import br.senac.tads.catdoggerenciador.entidades.enums.ETipoPermissao;
 
 /**
  *
@@ -18,21 +19,24 @@ public class Usuario extends Entidade {
     private String cpf;
     private String email;
     private String senha;
-    private String permissao;
+    private ETipoPermissao permissao;
     private boolean ativo;
 
     public Usuario(int id, String nome, String cpf, String email,
-            String senha, String permissao, boolean ativo) {
+            String senha, ETipoPermissao permissao, boolean ativo) {
         super(id);
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        this.senha = senha;
+        if (senha.length() == 60)
+            this.senha = senha;
+        else
+            setSenhaEncriptada(senha);
         this.permissao = permissao;
         this.ativo = ativo;
     }
 
-    public Usuario(int id, String nome, String cpf, String email, String permissao, boolean ativo) {
+    public Usuario(int id, String nome, String cpf, String email, ETipoPermissao permissao, boolean ativo) {
         super(id);
         this.nome = nome;
         this.cpf = cpf;
@@ -90,7 +94,7 @@ public class Usuario extends Entidade {
         return senha;
     }
 
-    public void setSenhaEncriptada(String senha) {
+    public final void setSenhaEncriptada(String senha) {
         this.senha = BCrypt.hashpw(senha, BCrypt.gensalt(12));
     }
 
@@ -117,14 +121,14 @@ public class Usuario extends Entidade {
     /**
      * @return the permissao
      */
-    public String getPermissao() {
+    public ETipoPermissao getPermissao() {
         return permissao;
     }
 
     /**
      * @param permissao the permissao to set
      */
-    public void setPermissao(String permissao) {
+    public void setPermissao(ETipoPermissao permissao) {
         this.permissao = permissao;
     }
 

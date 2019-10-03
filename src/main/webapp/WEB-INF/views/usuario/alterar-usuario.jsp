@@ -48,80 +48,78 @@
     </nav>
     <!-- End Navbar -->
     <div class="content">
-        <div class="container-fluid">
-            <div class="container">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-info">
-                            <h4 class="card-title">Alterar Usuário</h4>
-                            <p class="card-category">Altere os dados dos usuários</p>
-                        </div>
-                        <div class="card-body">
-                            <form action="alterar-usuario" method="post">
-                                <input type="hidden" value="${usuario.id}" name="id">
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Nome</label>
-                                            <input type="text" class="form-control" id="nome" name="nome" value="${usuario.nome}">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <h4 class="card-title">Alterar Usuário</h4>
+                                <p class="card-category">Alteração de usuário</p>
+                            </div>
+                            <div class="card-body">
+                                <form action="alterar-usuario" method="post">
+                                    <input type="hidden" value="${usuario.id}" id="id" name="id">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group bmd-form-group">
+                                                <label class="bmd-label-floating">Nome</label>
+                                                <input type="text" class="form-control" id="nome" name="nome" required value="${usuario.nome}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group bmd-form-group">
+                                                <label class="bmd-label-floating">CPF</label>
+                                                <input type="text" class="form-control" id="cpf" name="cpf" readonly value="${usuario.cpf}">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">CPF</label>
-                                            <input type="text" class="form-control" id="cpf" name="cpf" value="${usuario.cpf}" readonly>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group bmd-form-group">
+                                                <label class="bmd-label-floating">E-mail</label>
+                                                <input type="email" class="form-control" id="email" name="email" required value="${usuario.email}">
+                                            </div>
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">E-mail</label>
-                                            <input type="email" class="form-control" id="email" name="email" value="${usuario.email}">
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label class="bmd-label-floating" for="inputState">Permissão</label>
+                                            <select id="permissao" name="permissao" class="form-control" required>
+                                                <option selected>Selecione</option>
+                                                <c:forEach var="c" items="${permissoes}">
+                                                    <option value="${c.getOpcao()}">${c.toString()}</option>
+                                                </c:forEach>
+                                            </select>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputState">Permissão</label>
-                                        <select id="persmissao" name="permissao" class="form-control" value="${usuario.permissao}">
-                                            <option selected>Selecione</option>
-                                            <option>Administrador</option>
-                                            <option>Auxiliar</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-md-2">
-                                        <label class="bmd-label-floating" for="inputAtivo">Status</label>
-                                        <select id="ativo" name="ativo" class="custom-select" value="${usuario.ativo}" required>
-                                            <option value="true">Ativo</option>
-                                            <option value="false">Inativo</option>
-                                        </select>
+                                        <div class="form-group col-md-2">
+                                            <label class="bmd-label-floating" for="inputState">Ativo</label>
+                                            <select id="ativo" name="ativo" class="form-control" required>
+                                                <option selected>Selecione</option>
+                                                <option value="true">Ativo</option>
+                                                <option value="false">Inativo</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <br>
                                     <br>
-                                    <button type="submit" class="btn btn-success pull-right" id="alterarUser" name="alterarUser">Alterar</button>
-                                    <a href="listar-usuario" type="" class="btn btn-danger pull-right">Cancelar</a>
+                                    <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                                    <a href="dashboard" class="btn btn-danger pull-right">Cancelar</a>
                                     <div class="clearfix"></div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
-        </div>
-    </div>
-    <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 268px;">
-        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 88px;">
-        </div>
-    </div>
 </div>
-</body>
+<script>
+    $(document).ready(function () {
+        document.getElementById('ativo').value = '${usuario.ativo}';
+        document.getElementById('permissao').value = '${usuario.getPermissao().getOpcao()}';
+    });
+</script>

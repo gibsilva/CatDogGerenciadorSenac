@@ -7,6 +7,7 @@ package br.senac.tads.catdoggerenciador.servlets;
 
 import br.senac.tads.catdoggerenciador.entidades.Notificacao;
 import br.senac.tads.catdoggerenciador.entidades.Usuario;
+import br.senac.tads.catdoggerenciador.entidades.enums.ETipoPermissao;
 import br.senac.tads.catdoggerenciador.helpers.Utils;
 import br.senac.tads.catdoggerenciador.services.UsuarioService;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class UsuarioIncluirControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("permissoes", ETipoPermissao.values());
         request.getRequestDispatcher("/WEB-INF/views/usuario/incluir-usuario.jsp").forward(request, response);
     }
 
@@ -40,15 +42,14 @@ public class UsuarioIncluirControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Utils utils = new Utils();
-        
+
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        String permissao = request.getParameter("permissao");
-        
+        int permissao = Integer.parseInt(request.getParameter("permissao"));
 
-        Usuario usuario = new Usuario(0, nome, cpf, email, senha, permissao, true);
+        Usuario usuario = new Usuario(0, nome, cpf, email, senha, ETipoPermissao.fromInt(permissao), true);
 
         try {
             List<Notificacao> notificacoes = service.incluirOuAlterar(usuario);
@@ -58,7 +59,7 @@ public class UsuarioIncluirControllerServlet extends HttpServlet {
                 request.setAttribute("notificacoes", notificacoes);
                 request.getRequestDispatcher("/WEB-INF/views/usuario/incluir-usuario.jsp").forward(request, response);
             }
-        } catch (Exception e) {
+        } catch (IOException | ServletException e) {
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         } finally {
             this.service.limparNotificacoes();
