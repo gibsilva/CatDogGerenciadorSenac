@@ -61,7 +61,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Nome</label>
-                                            <input type="text" class="form-control" id="nome" name="nome" required>
+                                            <input type="text" class="form-control" id="nome" name="nome" required minlength="5" maxlength="80">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -81,7 +81,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Senha</label>
-                                            <input type="password" class="form-control" id="senha" name="senha" required>
+                                            <input type="password" class="form-control" id="senha" name="senha" required minlength="6" maxlength="12">
                                         </div>
                                     </div>
                                 </div>

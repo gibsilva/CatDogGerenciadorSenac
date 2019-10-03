@@ -22,6 +22,7 @@ import br.senac.tads.catdoggerenciador.helpers.Utils;
 import br.senac.tads.catdoggerenciador.services.CategoriaService;
 import br.senac.tads.catdoggerenciador.services.FornecedorService;
 import br.senac.tads.catdoggerenciador.services.ProdutoService;
+import java.io.File;
 import java.io.FileOutputStream;
 
 @WebServlet(name = "ProdutoIncluirServlet", urlPatterns = {"/incluir-produto"})
@@ -31,12 +32,14 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
     private final ProdutoService produtoService;
     private final CategoriaService categoriaService;
     private final FornecedorService fornecedorService;
-	private FileOutputStream os;
+    private FileOutputStream os;
+    private final String DIRETORIO = "c:/uploads/";
 
     public ProdutoIncluirControllerServlet() {
         this.produtoService = new ProdutoService();
         this.categoriaService = new CategoriaService();
         this.fornecedorService = new FornecedorService();
+        verificaDiretorio();
     }
 
     @Override
@@ -84,30 +87,31 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
                 byte[] b = new byte[i];
                 is.read(b);
                 fileName = getFileName(part);
-                caminho = getCaminho(getServletContext().getRealPath("/imagens"), fileName);
+                caminho = DIRETORIO + fileName; 
+                //caminho = getCaminho(getServletContext().getRealPath("/imagens"), fileName);
                 os = new FileOutputStream(caminho);
                 os.write(b);
             }
-            
-            Imagem img = new Imagem(0, fileName, caminho, fileName.substring(fileName.length()-4, fileName.length()), 0);
+
+            Imagem img = new Imagem(0, fileName, caminho, fileName.substring(fileName.length() - 4, fileName.length()), 0);
             imagens.add(img);
         }
 
         Produto produto = new Produto(
-                0, 
-                nome, 
-                descricao, 
-                especificacao, 
-                precoCompra, 
-                precoVenda, 
+                0,
+                nome,
+                descricao,
+                especificacao,
+                precoCompra,
+                precoVenda,
                 quantidade,
                 ativo,
-                idCategoria, 
-                idFornecedor, 
-                EPorteAnimal.fromInt(porteAnimal), 
+                idCategoria,
+                idFornecedor,
+                EPorteAnimal.fromInt(porteAnimal),
                 ETipoAnimal.fromInt(tipoAnimal)
         );
-        
+
         produto.setImagens(imagens);
 
         try {
@@ -119,7 +123,7 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/views/produto/incluir-produto.jsp").forward(request, response);
             }
         } catch (Exception e) {
-        	os.close();
+            os.close();
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         } finally {
             this.produtoService.limparNotificacoes();
@@ -137,8 +141,14 @@ public class ProdutoIncluirControllerServlet extends HttpServlet {
         return null;
     }
 
-    private String getCaminho(String caminho, String arquivo){
+    private String getCaminho(String caminho, String arquivo) {
         caminho = caminho.substring(0, caminho.indexOf("target"));
         return caminho + "\\imagens\\" + arquivo;
+    }
+    
+    private void verificaDiretorio(){
+        File diretorio = new File("c:/uploads");
+        if(!diretorio.exists())
+            diretorio.mkdir();
     }
 }

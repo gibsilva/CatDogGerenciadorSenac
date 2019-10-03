@@ -24,7 +24,7 @@ public class UsuarioDao extends BaseDao implements IUsuario {
 
     @Override
     public Usuario obterPorId(int id) {
-        Connection conn = conexao.getConnection();
+        this.conn = conexao.getConnection();
         Usuario usuario = null;
 
         try {
@@ -56,12 +56,13 @@ public class UsuarioDao extends BaseDao implements IUsuario {
     }
 
     public Usuario obterPorEmail(String email) {
-        Connection conn = conexao.getConnection();
+        this.conn = conexao.getConnection();
         Usuario usuario = null;
 
         try {
             this.stmt = conn.prepareStatement("select id, nome, cpf, email,"
-                    + " senha, permissao, ativo from usuario where id = ?");
+                    + " senha, permissao, ativo from usuario where email = ?");
+            this.stmt.setString(1, email);
 
             rs = stmt.executeQuery();
 
@@ -85,12 +86,14 @@ public class UsuarioDao extends BaseDao implements IUsuario {
     }
 
     public Usuario obterPorEmail(String email, int id) {
-        Connection conn = conexao.getConnection();
+        this.conn = conexao.getConnection();
         Usuario usuario = null;
 
         try {
             this.stmt = conn.prepareStatement("select id, nome, cpf, email,"
-                    + " senha, permissao, ativo from usuario where id = ?");
+                    + " senha, permissao, ativo from usuario where email = ? and id = ?");
+            this.stmt.setString(1, email);
+            this.stmt.setInt(2, id);
 
             rs = stmt.executeQuery();
 

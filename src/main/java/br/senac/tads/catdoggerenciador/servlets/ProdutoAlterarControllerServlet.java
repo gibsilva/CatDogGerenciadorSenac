@@ -60,8 +60,8 @@ public class ProdutoAlterarControllerServlet extends HttpServlet {
         double precoVenda = Double.parseDouble(utils.formatarValor(request.getParameter("precoVenda")));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
-        int idCategoria = Integer.parseInt(request.getParameter("categoria"));
-        int idFornecedor = Integer.parseInt(request.getParameter("fornecedor"));
+        int idCategoria = Integer.parseInt(request.getParameter("idCategoria"));
+        int idFornecedor = Integer.parseInt(request.getParameter("idFornecedor"));
         int porteAnimal = Integer.parseInt(request.getParameter("porteAnimal"));
         int tipoAnimal = Integer.parseInt(request.getParameter("tipoAnimal"));
 

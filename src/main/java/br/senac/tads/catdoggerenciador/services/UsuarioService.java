@@ -45,4 +45,24 @@ public class UsuarioService {
     public void limparNotificacoes() {
         this.notificacao.limparNotificacoes();
     }
+
+    public Usuario autenticar(String email, String senha) {
+        return validarAutenticacao(email, senha);
+    }
+
+    //validar a autenticação do usuário
+    private Usuario validarAutenticacao(String email, String senha) {
+        if (email.equals("") || senha.equals("")) {
+            this.notificacao.adicionaNotificacao("Nome de usuário ou senha não podem ser vazios");
+            return null;
+        } else {
+            Usuario usuario = usuarioDao.obterPorEmail(email);
+            if (usuario != null && usuario.validarSenha(senha)) {
+                return usuario;
+            } else {
+                this.notificacao.adicionaNotificacao("Nome de usuário ou senha incorreto, verifique os dados digitados");
+                return null;
+            }
+        }
+    }
 }

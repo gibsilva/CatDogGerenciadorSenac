@@ -75,7 +75,7 @@
                                         <select id="inputState" class="form-control" id="tipoAnimal" name="tipoAnimal" required>
                                             <option selected>Selecione</option>
                                             <c:forEach var="c" items="${tipoAnimal}">
-                                                <option value="${c.ordinal()}">${c.toString()}</option>
+                                                <option value="${c.getOpcao()}">${c.toString()}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -95,7 +95,7 @@
                                         <select id="inputState" class="form-control" id="porteAnimal" name="porteAnimal">
                                             <option selected>Selecione</option>
                                             <c:forEach var="c" items="${porteAnimal}">
-                                                <option value="${c.ordinal()}">${c.toString()}</option>
+                                                <option value="${c.getOpcao()}">${c.toString()}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
