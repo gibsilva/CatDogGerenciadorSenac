@@ -170,7 +170,7 @@
                                     <c:param name="id" value="${produto.id}" />
                                 </c:url>
                                 <a href="${alterarProduto}" class="btn btn-success pull-rights" data-toggle="tooltip" data-placement="left" title="Alterar Produto">Alterar</a>
-                                <button type="" class="btn btn-danger pull-right">Cancelar</button>
+                                            <a href="listar-produto" type="" class="btn btn-danger pull-right">Cancelar</a>
                                 <div class="clearfix"></div>
 
                             </form>
@@ -184,6 +184,8 @@
 
 <script>
     $(document).ready(function () {
+        document.getElementById('descricao').value = '${produto.descricao}';
+        document.getElementById('descricao').value = '${produto.descricao}';
         document.getElementById('descricao').value = '${produto.descricao}';
         document.getElementById('especificacao').value = '${produto.especificacao}';
         console.log('${produto.imagens[0].caminho}');
