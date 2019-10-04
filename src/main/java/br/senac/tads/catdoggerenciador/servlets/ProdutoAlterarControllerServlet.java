@@ -1,6 +1,5 @@
 package br.senac.tads.catdoggerenciador.servlets;
 
-import br.senac.tads.catdoggerenciador.entidades.Imagem;
 import br.senac.tads.catdoggerenciador.entidades.Notificacao;
 import br.senac.tads.catdoggerenciador.entidades.Produto;
 import br.senac.tads.catdoggerenciador.entidades.enums.EPorteAnimal;
@@ -16,9 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.senac.tads.catdoggerenciador.services.ProdutoService;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
 import javax.servlet.http.Part;
 
 @WebServlet(name = "ProdutoAlterarControllerServlet", urlPatterns = {"/alterar-produto"})
@@ -65,31 +61,31 @@ public class ProdutoAlterarControllerServlet extends HttpServlet {
         int porteAnimal = Integer.parseInt(request.getParameter("porteAnimal"));
         int tipoAnimal = Integer.parseInt(request.getParameter("tipoAnimal"));
 
-        List<Imagem> imagens = new ArrayList<Imagem>();
-
-        List<Part> arquivos = new ArrayList<>();
-        for (Part part : request.getParts()) {
-            if (part.getName().equals("imagem")) {
-                arquivos.add(part);
-            }
-        }
-
-        for (Part part : arquivos) {
-            String fileName;
-            String caminho;
-            try (InputStream is = request.getPart(part.getName()).getInputStream()) {
-                int i = is.available();
-                byte[] b = new byte[i];
-                is.read(b);
-                fileName = getFileName(part);
-                caminho = UPLOAD_DIRECTORY + fileName;
-                FileOutputStream os = new FileOutputStream(caminho);
-                os.write(b);
-            }
-
-            Imagem img = new Imagem(0, fileName, caminho, fileName.substring(fileName.length() - 4, fileName.length()), 0);
-            imagens.add(img);
-        }
+//        List<Imagem> imagens = new ArrayList<Imagem>();
+//
+//        List<Part> arquivos = new ArrayList<>();
+//        for (Part part : request.getParts()) {
+//            if (part.getName().equals("imagem")) {
+//                arquivos.add(part);
+//            }
+//        }
+//
+//        for (Part part : arquivos) {
+//            String fileName;
+//            String caminho;
+//            try (InputStream is = request.getPart(part.getName()).getInputStream()) {
+//                int i = is.available();
+//                byte[] b = new byte[i];
+//                is.read(b);
+//                fileName = getFileName(part);
+//                caminho = UPLOAD_DIRECTORY + fileName;
+//                FileOutputStream os = new FileOutputStream(caminho);
+//                os.write(b);
+//            }
+//
+//            Imagem img = new Imagem(0, fileName, caminho, fileName.substring(fileName.length() - 4, fileName.length()), 0);
+//            imagens.add(img);
+//        }
 
         Produto produto = new Produto(
                 id,
@@ -106,7 +102,7 @@ public class ProdutoAlterarControllerServlet extends HttpServlet {
                 ETipoAnimal.fromInt(tipoAnimal)
         );
 
-        produto.setImagens(imagens);
+        //produto.setImagens(imagens);
 
         try {
             List<Notificacao> notificacoes = produtoService.incluirOuAlterarProduto(produto);

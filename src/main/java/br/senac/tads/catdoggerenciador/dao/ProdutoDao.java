@@ -82,7 +82,7 @@ public class ProdutoDao extends BaseDao implements IProdutoDao {
                     + "    `produto`.`IdFornecedor`,\n"
                     + "    `produto`.`PorteAnimal`,\n"
                     + "    `produto`.`TipoAnimal`\n"
-                    + " FROM `catdog`.`produto`;");
+                    + " FROM `catdog`.`produto` where ativo = 1");
 
             rs = stmt.executeQuery();
 

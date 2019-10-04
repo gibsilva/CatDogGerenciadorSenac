@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Consulta de Usuário</title>
+    <title>Consulta de Usuï¿½rio</title>
 </head>
 
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="abab6d38-69e0-098a-7dec-274e5b37e67c">
@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Consulta de Usuário</a>
+                <a class="navbar-brand" href="#pablo">Consulta de Usuï¿½rio</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -37,7 +37,7 @@
                             <a class="dropdown-item" href="#">Profile</a>
                             <a class="dropdown-item" href="#">Settings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Log out</a>
+                            <a class="dropdown-item" href="logout">Log out</a>
                         </div>
                     </li>
                 </ul>
@@ -52,14 +52,14 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
-                            <h4 class="card-title ">Usuários</h4>
-                            <p class="card-category">Lista de usuários cadastrados</p>
+                            <h4 class="card-title ">Usuï¿½rios</h4>
+                            <p class="card-category">Lista de usuï¿½rios cadastrados</p>
                         </div>
                         <div class="card-body">
                             <span class="bmd-form-group col-md-8">
                                 <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Pesquisar">
-                                    <button type="submit" class="btn btn-info btn-round btn-just-icon" data-toggle="tooltip" data-placement="left" title="Pesquisar Usuário">
+                                    <input type="text" value="" class="form-control" placeholder="Pesquisar" id="filtro">
+                                    <button type="submit" class="btn btn-info btn-round btn-just-icon" data-toggle="tooltip" data-placement="left" title="Pesquisar Usuï¿½rio">
                                         <i class="material-icons">search</i>
                                         <div class="ripple-container"></div>
                                     </button>
@@ -72,14 +72,14 @@
                                             <th class="text-center"><b>ID</b></th>
                                             <th class="text-center"><b>Nome</b></th>
                                             <th class="text-center"><b>CPF</b></th>
-                                            <th class="text-center"><b>Permissão</b></th>
+                                            <th class="text-center"><b>Permissï¿½o</b></th>
                                             <th class="text-center"><b>Status</b></th>
-                                            <th class="text-center"><b>Ação</b></th>
+                                            <th class="text-center"><b>Aï¿½ï¿½o</b></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <c:forEach var="c" items="${usuarios}">
+                                    <tbody id="tabela" name="tabela">
+                                        <c:forEach var="c" items="${usuarios}">
+                                            <tr>
                                                 <td class="text-center">${c.id}</td>
                                                 <td class="text-center">${c.nome}</td>
                                                 <td class="text-center">${c.cpf}</td>
@@ -94,14 +94,14 @@
                                                     <c:url var="alterarUsuario" value="/alterar-usuario">
                                                         <c:param name="id" value="${c.id}" />
                                                     </c:url>
-                                                    <a href="${alterarUsuario}" class="btn btn-link btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Usuário"><i class="fas fa-pen"></i></a>
+                                                    <a href="${alterarUsuario}" class="btn btn-link btn-success" data-toggle="tooltip" data-placement="left" title="Alterar Usuï¿½rio"><i class="fas fa-pen"></i></a>
                                                         <c:url var="excluirUsuario" value="/excluir-usuario">
                                                             <c:param name="id" value="${c.id}" />
                                                         </c:url>
-                                                    <a href="${excluirUsuario}" class="btn btn-link btn-danger" data-toggle="tooltip" data-placement="left" title="Excluir Usuário"><i class="material-icons">close</i></a>
+                                                    <a href="${excluirUsuario}" class="btn btn-link btn-danger" data-toggle="tooltip" data-placement="left" title="Excluir Usuï¿½rio"><i class="material-icons">close</i></a>
                                                 </td>
-                                            </c:forEach>
-                                        </tr> 
+                                            </tr> 
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -122,3 +122,19 @@
     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 316px;">            
     </div>            
 </div>  
+
+<script>
+
+    $('#filtro').on('keyup', function () {
+        var value = $(this).val();
+        var patt = new RegExp(value, "i");
+        $('#tabela').find('tr').each(function () {
+            if (!($(this).find('td').text().search(patt) >= 0)) {
+                $(this).not('.myHead').hide();
+            }
+            if (($(this).find('td').text().search(patt) >= 0)) {
+                $(this).show();
+            }
+        });
+    });
+</script>

@@ -40,7 +40,7 @@
                             <a class="dropdown-item" href="#">Profile</a>
                             <a class="dropdown-item" href="#">Settings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Log out</a>
+                            <a class="dropdown-item" href="logout">Log out</a>
                         </div>
                     </li>
                 </ul>
@@ -60,7 +60,7 @@
                         <div class="card-body">
                             <span class="bmd-form-group col-md-8">
                                 <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Pesquisar">
+                                    <input type="text" value="" class="form-control" placeholder="Pesquisar" id="filtro">
                                     <button type="submit" class="btn btn-info btn-round btn-just-icon">
                                         <i class="material-icons">search</i>
                                         <div class="ripple-container"></div>
@@ -80,7 +80,7 @@
                                             <th class="text-center"><b>Ação</b></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tabela" name="tabela">
                                         <c:forEach var="c" items="${produtos}">
                                             <tr>
                                                 <td class="text-center">${c.id}</td>
@@ -124,3 +124,19 @@
         </div>            
     </div>       
 </div>
+
+<script>
+
+    $('#filtro').on('keyup', function () {
+        var value = $(this).val();
+        var patt = new RegExp(value, "i");
+        $('#tabela').find('tr').each(function () {
+            if (!($(this).find('td').text().search(patt) >= 0)) {
+                $(this).not('.myHead').hide();
+            }
+            if (($(this).find('td').text().search(patt) >= 0)) {
+                $(this).show();
+            }
+        });
+    });
+</script>

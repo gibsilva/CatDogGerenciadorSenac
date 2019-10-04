@@ -33,7 +33,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                             <a class="dropdown-item" href="#">Perfil</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Log out</a>
+                            <a class="dropdown-item" href="logout">Log out</a>
                         </div>
                     </li>
                 </ul>
@@ -51,7 +51,8 @@
                             <p class="card-category">Alteração de dados do produto</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="alterar-produto" method="post">
+                                <input type="hidden" id="id" name="id" value="${produto.id}">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
@@ -140,95 +141,185 @@
                                         <div class="col-md-2">
                                             <div class="form-group bmd-form-group">
                                                 <label class="bmd-label-floating">Preço Venda</label>
-                                                <input type="text" class="form-control" id="precoVenda" name="PrecoVenda" required value="<fmt:formatNumber value="${produto.precoVenda}" type="number"></fmt:formatNumber>">
+                                                <input type="text" class="form-control" id="precoVenda" name="precoVenda" required value="<fmt:formatNumber value="${produto.precoVenda}" type="number"></fmt:formatNumber>">
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group form-file-upload form-file-multiple col-md-6">
-                                            <input type="file" multiple="file" class="inputFileHidden" accept="image/png, image/jpeg">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-2">
                                             <label class="bmd-label-floating" for="inputState">Status</label>
-                                            <select id="inputState" class="form-control" id="idStatus" name="status" required>
-                                                <option>Selecione</option>
+                                            <select id="inputState" class="form-control" id="idStatus" name="ativo" required>
+                                                <option value="">Selecione</option>
                                                 <option value="true">Ativo</option>
                                                 <option value="false">Inativo</option>
                                             </select>
                                         </div>
                                     </div>
                                     <br>
-                                    <br>
-                                    <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                                    <button id="btnSalvar" onclick="salvar()" type="submit" class="btn btn-success pull-right">Salvar</button>
                                     <a href="listar-produto" type="" class="btn btn-danger pull-right">Cancelar</a>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-header card-header-info">
+                                    <h4 class="card-title">Lista de imagens</h4>
+                                    <p class="card-category">Alteração das imagens</p>
+                                </div>
+                                <br>
+                                <div class="row text-center text-lg-left">
+                                <c:forEach var="c" items="${produto.imagens}">
+                                    <div class="col-lg-3 col-md-4 col-6">
+                                        <c:url var="imagem" value="/imagem">
+                                            <c:param name="idImagem" value="${c.id}" />
+                                        </c:url>
+                                        <img class="img-fluid img-thumbnail" src="${imagem}" alt="${c.nome}">
+                                        <input id="fileInput" type="file" style="display:none;" />
+                                        <input type="button" class="btn btn-primary btn-block" value="Escolher imagem" onclick="alterarImagem(${c.id})" />
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
-    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
-        </div>
+<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
     </div>
-    <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 268px;">
-        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 88px;">
-        </div>
+</div>
+<div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 268px;">
+    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 88px;">
     </div>
+</div>
 
-    <script>
-        $(document).ready(function () {
-            document.getElementById('idFornecedor').value = '${produto.idFornecedor}';
-            document.getElementById('idCategoria').value = '${produto.idCategoria}';
-            document.getElementById('idDescricao').value = '${produto.descricao}';
-            document.getElementById('idEspecificacao').value = '${produto.especificacao}';
-            document.getElementById('tipoAnimal').value = '${produto.tipoAnimal.getOpcao()}';
-            document.getElementById('porteAnimal').value = '${produto.porteAnimal.getOpcao()}';
-            document.getElementById('idStatus').value = '${produto.ativo}';
-        });
+<script>
+    var idImagem = 0;
+    var permissao = '${sessionScope.usuarioLogado.permissao}';
 
-        // FileInput
-        $('.form-file-simple .inputFileVisible').click(function () {
-            $(this).siblings('.inputFileHidden').trigger('click');
-        });
+    $(document).ready(function () {
+        if (permissao !== 'Adminstrador')
+            funcAuxiliar();
+        document.getElementById('idFornecedor').value = '${produto.idFornecedor}';
+        document.getElementById('idCategoria').value = '${produto.idCategoria}';
+        document.getElementById('idDescricao').value = '${produto.descricao}';
+        document.getElementById('idEspecificacao').value = '${produto.especificacao}';
+        document.getElementById('tipoAnimal').value = '${produto.tipoAnimal.getOpcao()}';
+        document.getElementById('porteAnimal').value = '${produto.porteAnimal.getOpcao()}';
+        console.log('${produto.ativo}');
+        if ('${produto.ativo}' === true) {
+            document.getElementById('inputState').value = 'false';
+        } else {
+            document.getElementById('inputState').value = 'true';
+        }
+    });
 
-        $('.form-file-simple .inputFileHidden').change(function () {
-            var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
-            $(this).siblings('.inputFileVisible').val(filename);
-        });
+    function salvar() {
+        $('#porteAnimal').attr('disabled', false);
+        $('#idCategoria').attr('disabled', false);
+        $('#idFornecedor').attr('disabled', false);
+        $('#inputState').attr('disabled', false);
+        $('#tipoAnimal').attr('disabled', false);
+    }
 
-        $('.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn').click(function () {
-            $(this).parent().parent().find('.inputFileHidden').trigger('click');
-            $(this).parent().parent().addClass('is-focused');
-        });
+    function alterarImagem(id) {
+        document.getElementById('fileInput').click();
+        idImagem = id;
+    }
 
-        $('.form-file-multiple .inputFileHidden').change(function () {
-            var names = '';
-            for (var i = 0; i < $(this).get(0).files.length; ++i) {
-                if (i < $(this).get(0).files.length - 1) {
-                    names += $(this).get(0).files.item(i).name + ',';
-                } else {
-                    names += $(this).get(0).files.item(i).name;
-                }
+    function funcAuxiliar() {
+        $('#nomeProduto').prop('readonly', true);
+        $('#tipoAnimal').attr('disabled', true);
+        $('#porteAnimal').attr('disabled', true);
+        $('#idCategoria').attr('disabled', true);
+        $('#idFornecedor').attr('disabled', true);
+        $('#idDescricao').prop('readonly', true);
+        $('#idEspecificacao').prop('readonly', true);
+        $('#precoCompra').prop('readonly', true);
+        $('#precoVenda').prop('readonly', true);
+        $('#inputState').attr('disabled', true);
+    }
+
+    $('#fileInput').change(function () {
+        var imagem = $('#fileInput').val();
+        trocarImagem(imagem);
+    });
+
+    function trocarImagem(imagem) {
+        console.log(imagem);
+        var sampleFile = document.getElementById("fileInput").files[0];
+        var formdata = new FormData();
+
+        formdata.append("fileInput", sampleFile);
+        formdata.append("id", idImagem);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "alterar-imagens", true);
+        console.log(idImagem);
+        xhr.send(formdata);
+        xhr.onload = function (e) {
+
+            if (this.status === 200) {
+                alert('Imagem alterada');
             }
-            $(this).siblings('.input-group').find('.inputFileVisible').val(names);
-        });
 
-        $('.form-file-multiple .btn').on('focus', function () {
-            $(this).parent().siblings().trigger('focus');
-        });
+        };
+        /*
+         $.ajax({
+         url: "alterar-imagens",
+         type: "GET",
+         contentType: 'application/json',
+         data: {'arquivo': imagem},
+         success: function (data) {
+         console.log(data);
+         },
+         error: function (jqXHR, textStatus, errorThrown) {
+         console.log(jqXHR, textStatus, errorThrown);
+         }
+         });
+         */
+    }
 
-        $('.form-file-multiple .btn').on('focusout', function () {
-            $(this).parent().siblings().trigger('focusout');
-        });
+    // FileInput
+    $('.form-file-simple .inputFileVisible').click(function () {
+        $(this).siblings('.inputFileHidden').trigger('click');
+    });
+
+    $('.form-file-simple .inputFileHidden').change(function () {
+        var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+        $(this).siblings('.inputFileVisible').val(filename);
+    });
+
+    $('.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn').click(function () {
+        $(this).parent().parent().find('.inputFileHidden').trigger('click');
+        $(this).parent().parent().addClass('is-focused');
+    });
+
+    $('.form-file-multiple .inputFileHidden').change(function () {
+        var names = '';
+        for (var i = 0; i < $(this).get(0).files.length; ++i) {
+            if (i < $(this).get(0).files.length - 1) {
+                names += $(this).get(0).files.item(i).name + ',';
+            } else {
+                names += $(this).get(0).files.item(i).name;
+            }
+        }
+        $(this).siblings('.input-group').find('.inputFileVisible').val(names);
+    });
+
+    $('.form-file-multiple .btn').on('focus', function () {
+        $(this).parent().siblings().trigger('focus');
+    });
+
+    $('.form-file-multiple .btn').on('focusout', function () {
+        $(this).parent().siblings().trigger('focusout');
+    });
 
 
 </script>

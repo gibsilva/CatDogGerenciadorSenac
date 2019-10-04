@@ -68,7 +68,7 @@ public class UsuarioDao extends BaseDao implements IUsuario {
 
             while (rs.next()) {
                 usuario = new Usuario(
-                        rs.getInt("IdUsuario"),
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("email"),
@@ -125,7 +125,7 @@ public class UsuarioDao extends BaseDao implements IUsuario {
 
         try {
             this.stmt = conn.prepareStatement("select id, nome, cpf, email,"
-                    + " senha, permissao, ativo from usuario");
+                    + " senha, permissao, ativo from usuario where ativo = 1");
 
             rs = stmt.executeQuery();
 

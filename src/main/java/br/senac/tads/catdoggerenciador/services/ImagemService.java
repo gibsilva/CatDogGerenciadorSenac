@@ -14,25 +14,30 @@ import java.util.List;
  * @author Gi
  */
 public class ImagemService {
+
     private final ImagemDao imagemDao;
-    
-    public ImagemService(){
+
+    public ImagemService() {
         this.imagemDao = new ImagemDao();
     }
-    
-    public List<Imagem> obterTodas(){
+
+    public List<Imagem> obterTodas() {
         return this.imagemDao.obterTodos();
     }
-    
-    public Imagem obterPorId(int id){
+
+    public Imagem obterPorId(int id) {
         return this.imagemDao.obterPorId(id);
     }
-    
-    public void salvar(Imagem imagem){
+
+    public List<Imagem> obterPorIdDoProduto(int id) {
+        return this.imagemDao.obterPorIdProduto(id);
+    }
+
+    public void salvar(Imagem imagem) {
         this.imagemDao.salvar(imagem);
     }
-    
-    public void alterar(Imagem imagem){
+
+    public void alterar(Imagem imagem) {
         this.imagemDao.alterar(imagem);
     }
 }

@@ -1,18 +1,18 @@
 <%-- 
-    Document   : incluir-categoria
-    Created on : 22/09/2019, 10:40:11
+    Document   : alterar-imagens.jsp
+    Created on : 21/09/2019, 22:06:46
     Author     : Gi
 --%>
-
 <%@include file="../header.jsp" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<title>Alteração de Categorias</title>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1f824408-32f0-04a9-f7a5-3406fff7d60f">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Alteração de Categorias</a>
+                <a class="navbar-brand" href="#pablo">Alteração de Imagens do Produto</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -47,25 +47,31 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
-                            <h4 class="card-title">Alterar Categorias</h4>
-                            <p class="card-category">Altere de dados de categorias</p>
+                            <h4 class="card-title">Alterar Produto</h4>
+                            <p class="card-category">Alteração de imagens do produto</p>
                         </div>
                         <div class="card-body">
-                            <form action="alterar-categoria" method="post">
-                                <input type="hidden" id="id" name="id" value="${categoria.id}">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Nome da categoria</label>
-                                            <input type="text" class="form-control" id="categoria" name="categoria" required value="${categoria.nome}">
-                                        </div>
+                            <form action="alterar-imagens" method="post">
+                                <input type="hidden" id="id" name="id" value="${produto.id}">
+                                <div class="row text-center text-lg-left">
+                                    <div class="col-lg-3 col-md-4 col-6">
+                                        <a href="#" class="d-block mb-4 h-100">
+                                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-6">
+                                        <a href="#" class="d-block mb-4 h-100">
+                                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+                                        </a>
                                     </div>
                                 </div>
-                                <br>
-                                <button type="submit" class="btn btn-success pull-right">Alterar</button>
-                                <a href="listar-categoria" class="btn btn-danger pull-right">Cancelar<a/>
-                                    <div class="clearfix"></div>
+                                <div class="row">
+                                    <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                                    <a href="listar-produto" type="" class="btn btn-danger pull-right">Cancelar</a>
+                                </div>
+                                <div class="clearfix"></div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -83,3 +89,7 @@
     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 88px;">
     </div>
 </div>
+
+<script>
+
+</script>

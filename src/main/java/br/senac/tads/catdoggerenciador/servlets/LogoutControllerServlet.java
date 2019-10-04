@@ -24,7 +24,7 @@ public class LogoutControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         sessao.invalidate();
-        response.sendRedirect("WEB-INF/login.jsp");
+        response.sendRedirect("login");
     }
 
     @Override

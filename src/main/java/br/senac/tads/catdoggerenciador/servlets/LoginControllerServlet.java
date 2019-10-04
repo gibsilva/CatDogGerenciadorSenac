@@ -43,6 +43,7 @@ public class LoginControllerServlet extends HttpServlet {
         if (usuario != null) {
             request.getSession().setAttribute("usuarioLogado", usuario);
             response.sendRedirect("dashboard");
+            return;
         } else {
             request.getSession().invalidate();
             request.setAttribute("erro", "Nome de usuário ou senha incorretos");
